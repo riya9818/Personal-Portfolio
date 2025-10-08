@@ -3,6 +3,54 @@
 
 {% block title %}About - My Portfolio{% endblock %}
 {% block content %}
-<h1>About Me</h1>
-<p>This is where you can describe yourself or your project.</p>
+
+<div class="row align-items-center my-5">
+    <div class="col-md-6">
+        <h2>About Me</h2>
+        <p>Hello! I’m Wiwii, a passionate full-stack developer. I love building web apps that are clean, performant, and delightful to use.</p>
+        <p>I specialize in Django, Python, and modern frontend technologies. I enjoy collaborating with designers and creating products that solve real problems.</p>
+    </div>
+    <div class="col-md-6 text-center">
+        <img src="{% static 'images/profile.jpg' %}" alt="Profile Photo" class="img-fluid rounded-circle" style="max-width:300px;">
+    </div>
+</div>
+
+<div class="row mt-5">
+    <h3 class="mb-4">Skills & Proficiency</h3>
+    <div class="col-md-6">
+        <h5>Python / Django</h5>
+        <div class="progress mb-3">
+            <div class="progress-bar bg-primary" role="progressbar" style="width: 90%">90%</div>
+        </div>
+
+        <h5>JavaScript / Bootstrap</h5>
+        <div class="progress mb-3">
+            <div class="progress-bar bg-primary" role="progressbar" style="width: 85%">85%</div>
+        </div>
+
+        <h5>HTML / CSS</h5>
+        <div class="progress mb-3">
+            <div class="progress-bar bg-primary" role="progressbar" style="width: 95%">95%</div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <h5>Database / SQL</h5>
+        <div class="progress mb-3">
+            <div class="progress-bar bg-primary" role="progressbar" style="width: 80%">80%</div>
+        </div>
+
+        <h5>REST APIs / DRF</h5>
+        <div class="progress mb-3">
+            <div class="progress-bar bg-primary" role="progressbar" style="width: 85%">85%</div>
+        </div>
+
+        <h5>Version Control / Git</h5>
+        <div class="progress mb-3">
+            <div class="progress-bar bg-primary" role="progressbar" style="width: 90%">90%</div>
+        </div>
+    </div>
+</div>
+
 {% endblock %}
+
