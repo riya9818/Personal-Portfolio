@@ -1,0 +1,50 @@
+/* Base typography */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f8fafc;
+    color: #1e293b;
+}
+
+h1, h2, h3 {
+    font-weight: 700;
+}
+
+/* Navbar */
+.navbar-brand {
+    font-weight: 700;
+    color: #2563eb !important;
+}
+
+.nav-link:hover {
+    color: #2563eb !important;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: #2563eb;
+    border-color: #2563eb;
+}
+.btn-primary:hover {
+    background-color: #1d4ed8;
+    border-color: #1d4ed8;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 4rem 0;
+}
+
+.hero img {
+    max-width: 400px;
+    border-radius: 1rem;
+}
+
+/* Cards for projects */
+.card {
+    border-radius: 0.75rem;
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
+}
