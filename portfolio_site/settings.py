@@ -30,7 +30,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
-    
+    'projects',
 
     # Local apps
     # 'core', 'projects', etc. will be added later
