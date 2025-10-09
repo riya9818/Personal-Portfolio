@@ -111,9 +111,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # ---------------------------------------------------------
 # Email configuration
 # ---------------------------------------------------------
-EMAIL_BACKEND = env('EMAIL_BACKEND')
-DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', default='webmaster@localhost')
-
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # For dev
+DEFAULT_FROM_EMAIL = 'riyabasnet0924@gmail.com'
 # ---------------------------------------------------------
 # Security for production (placeholders for now)
 # ---------------------------------------------------------
