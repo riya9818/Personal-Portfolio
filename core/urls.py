@@ -9,6 +9,9 @@ urlpatterns = [
     path('', core_views.home, name='home'),
     path('about/', core_views.about, name='about'),
     path('contact/', core_views.contact, name='contact'),
+    path('testimonials/', core_views.testimonials_view, name='testimonials'),
+    path('blog/', core_views.blog_list, name='blog_list'),
+    path('blog/<slug:slug>/', core_views.blog_detail, name='blog_detail'),
     path('projects/', include('projects.urls')),
 ]
 
