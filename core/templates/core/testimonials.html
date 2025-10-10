@@ -1,0 +1,21 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Testimonials{% endblock %}
+
+{% block content %}
+<h2>What People Say 💬</h2>
+<div class="row mt-4">
+    {% for testimonial in testimonials %}
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <p class="fst-italic">"{{ testimonial.message }}"</p>
+                    <h6 class="fw-bold mt-3">- {{ testimonial.name }}</h6>
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <p>No testimonials yet.</p>
+    {% endfor %}
+</div>
+{% endblock %}
