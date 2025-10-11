@@ -1,16 +1,17 @@
-from django.shortcuts import render, redirect
-from django.core.mail import send_mail
+# core/views.py
+from django.shortcuts import render, redirect, get_object_or_404
+from django.core.mail import send_mail, BadHeaderError
 from django.contrib import messages
+from django.conf import settings
 from .forms import ContactForm
-from django.shortcuts import render, get_object_or_404
 from .models import Testimonial, BlogPost
 from projects.models import Project
+
 
 def home(request):
     projects = Project.objects.all()[:3]  # latest 3 projects
     testimonials = Testimonial.objects.all()[:3]
     return render(request, 'core/home.html', {'projects': projects, 'testimonials': testimonials})
-
 
 
 def about(request):
@@ -21,33 +22,49 @@ def testimonials_view(request):
     testimonials = Testimonial.objects.all()
     return render(request, 'core/testimonials.html', {'testimonials': testimonials})
 
+
 def blog_list(request):
     posts = BlogPost.objects.all()
     return render(request, 'core/blog_list.html', {'posts': posts})
 
+
 def blog_detail(request, slug):
     post = get_object_or_404(BlogPost, slug=slug)
     return render(request, 'core/blog_detail.html', {'post': post})
+
 
 def contact(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
             contact = form.save()
-            
-            # Send email notification
-            send_mail(
-                subject=f"New contact message from {contact.name}",
-                message=contact.message,
-                from_email=contact.email,
-                recipient_list=['riyabasnet0924@gmail.com'],  # Replace with your email or use env var
-                fail_silently=True,
+
+            subject = f"New contact message from {contact.name}"
+            body = (
+                f"You have a new contact message:\n\n"
+                f"Name: {contact.name}\n"
+                f"Email: {contact.email}\n\n"
+                f"Message:\n{contact.message}"
             )
-            
-            messages.success(request, "Thanks! Your message has been sent.")
+
+            try:
+                send_mail(
+                    subject,
+                    body,
+                    settings.DEFAULT_FROM_EMAIL,  # from .env
+                    [settings.EMAIL_HOST_USER],   # send to your inbox
+                    fail_silently=False,
+                )
+                messages.success(request, "✅ Thanks! Your message has been sent successfully.")
+            except BadHeaderError:
+                messages.error(request, "⚠️ Invalid header detected.")
+            except Exception as e:
+                messages.error(request, f"⚠️ Error sending email: {e}")
+
             return redirect('contact')
         else:
             messages.error(request, "Please correct the errors below.")
     else:
         form = ContactForm()
+
     return render(request, 'core/contact.html', {'form': form})
