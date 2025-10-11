@@ -6,7 +6,8 @@ from django.conf import settings
 from .forms import ContactForm
 from .models import Testimonial, BlogPost
 from projects.models import Project
-
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
 
 def home(request):
     projects = Project.objects.all()[:3]  # latest 3 projects
@@ -60,6 +61,62 @@ def contact(request):
                 messages.error(request, "⚠️ Invalid header detected.")
             except Exception as e:
                 messages.error(request, f"⚠️ Error sending email: {e}")
+
+            return redirect('contact')
+        else:
+            messages.error(request, "Please correct the errors below.")
+    else:
+        form = ContactForm()
+
+    return render(request, 'core/contact.html', {'form': form})
+
+def contact(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            contact = form.save()
+
+            subject = f"New contact message from {contact.name}"
+
+            # Context for templates
+            context = {
+                'name': contact.name,
+                'email': contact.email,
+                'message': contact.message,
+            }
+
+            # Render both text and HTML
+            text_body = render_to_string('emails/contact_notification.html', context)
+            html_body = render_to_string('emails/contact_notification.html', context)
+
+            try:
+                # Send to site owner
+                msg = EmailMultiAlternatives(
+                    subject,
+                    text_body,
+                    settings.DEFAULT_FROM_EMAIL,
+                    [settings.EMAIL_HOST_USER],
+                )
+                msg.attach_alternative(html_body, "text/html")
+                msg.send()
+
+                # Send confirmation to sender
+                confirm_subject = "Thanks for contacting me!"
+                confirm_text = render_to_string('emails/contact_confirmation.html', context)
+                confirm_html = render_to_string('emails/contact_confirmation.html', context)
+
+                confirmation = EmailMultiAlternatives(
+                    confirm_subject,
+                    confirm_text,
+                    settings.DEFAULT_FROM_EMAIL,
+                    [contact.email],
+                )
+                confirmation.attach_alternative(confirm_html, "text/html")
+                confirmation.send()
+
+                messages.success(request, "✅ Message sent! Check your email for confirmation.")
+            except Exception as e:
+                messages.error(request, f"⚠️ Email failed: {e}")
 
             return redirect('contact')
         else:
