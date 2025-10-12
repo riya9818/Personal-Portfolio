@@ -34,41 +34,6 @@ def blog_detail(request, slug):
     return render(request, 'core/blog_detail.html', {'post': post})
 
 
-def contact(request):
-    if request.method == 'POST':
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            contact = form.save()
-
-            subject = f"New contact message from {contact.name}"
-            body = (
-                f"You have a new contact message:\n\n"
-                f"Name: {contact.name}\n"
-                f"Email: {contact.email}\n\n"
-                f"Message:\n{contact.message}"
-            )
-
-            try:
-                send_mail(
-                    subject,
-                    body,
-                    settings.DEFAULT_FROM_EMAIL,  # from .env
-                    [settings.EMAIL_HOST_USER],   # send to your inbox
-                    fail_silently=False,
-                )
-                messages.success(request, "✅ Thanks! Your message has been sent successfully.")
-            except BadHeaderError:
-                messages.error(request, "⚠️ Invalid header detected.")
-            except Exception as e:
-                messages.error(request, f"⚠️ Error sending email: {e}")
-
-            return redirect('contact')
-        else:
-            messages.error(request, "Please correct the errors below.")
-    else:
-        form = ContactForm()
-
-    return render(request, 'core/contact.html', {'form': form})
 
 def contact(request):
     if request.method == 'POST':
