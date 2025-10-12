@@ -13,6 +13,7 @@ urlpatterns = [
     path('blog/', core_views.blog_list, name='blog_list'),
     path('blog/<slug:slug>/', core_views.blog_detail, name='blog_detail'),
     path('projects/', include('projects.urls')),
+    path('resume/pdf/', core_views.resume_pdf, name='resume_pdf'),
 ]
 
 if settings.DEBUG:
