@@ -8,6 +8,9 @@ from .models import Testimonial, BlogPost
 from projects.models import Project
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
+from django.http import HttpResponse
+from weasyprint import HTML
+
 
 def home(request):
     projects = Project.objects.all()[:3]  # latest 3 projects
@@ -90,3 +93,31 @@ def contact(request):
         form = ContactForm()
 
     return render(request, 'core/contact.html', {'form': form})
+
+def resume_pdf(request):
+    # You can update this context with your real info
+    context = {
+        'name': 'Riya Basnet',
+        'email': 'riyabasnet0924@gmail.com',
+        'phone': '+977-98XXXXXXXX',
+        'location': 'Kathmandu, Nepal',
+        'summary': 'Aspiring developer passionate about building impactful web apps with Django and Python.',
+        'education_title': 'BSc (Hons) Computing',
+        'education_institution': 'Softwarica College of IT & E-Commerce',
+        'education_year': '2022 – Present',
+        'experience_title': 'Intern Web Developer',
+        'experience_company': 'Tech Company Pvt. Ltd.',
+        'experience_duration': 'Jun 2024 – Sept 2024',
+        'experience_details': 'Worked on full-stack web apps with Django, MySQL, and Bootstrap.',
+        'skills': ['Python', 'Django', 'HTML/CSS', 'Bootstrap', 'MySQL', 'Git', 'JavaScript'],
+        'projects': ['Portfolio Website', 'SneakSphere E-Commerce', 'CyberShield Security Tool'],
+    }
+
+    html_string = render_to_string('core/resume.html', context)
+    html = HTML(string=html_string)
+
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'inline; filename="Riya_Basnet_Resume.pdf"'
+
+    html.write_pdf(response)
+    return response
