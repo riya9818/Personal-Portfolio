@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+import django
 import environ
 
 # ---------------------------------------------------------
@@ -118,11 +119,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # ---------------------------------------------------------
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# ---------------------------------------------------------
-# Email configuration
-# ---------------------------------------------------------
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # For dev
-DEFAULT_FROM_EMAIL = 'riyabasnet0924@gmail.com'
+
 # ---------------------------------------------------------
 # Security for production (placeholders for now)
 # ---------------------------------------------------------
