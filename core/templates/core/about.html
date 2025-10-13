@@ -1,63 +1,111 @@
 {% extends 'core/base.html' %}
 {% load static %}
 
-{% block title %}About - My Portfolio{% endblock %}
+{% block title %}About - Riya Basnet{% endblock %}
+
 {% block content %}
+<div class="container my-5">
 
-<div class="row align-items-center my-5">
-    <div class="col-md-6">
-        <h2>About Me</h2>
-        <p>Hello! I’m Wiwii, a passionate full-stack developer. I love building web apps that are clean, performant, and delightful to use.</p>
-        <p>I specialize in Django, Python, and modern frontend technologies. I enjoy collaborating with designers and creating products that solve real problems.</p>
+  <!-- Intro -->
+  <div class="row align-items-center mb-5">
+    <div class="col-md-6 order-md-2 text-center">
+      <img src="{% static 'images/profile.jpg' %}" alt="Profile Photo" class="img-fluid rounded-circle shadow" style="max-width:260px;">
     </div>
-    <div class="col-md-6 text-center">
-        <img src="{% static 'images/profile.jpg' %}" alt="Profile Photo" class="img-fluid rounded-circle" style="max-width:300px;">
-    </div>
-</div>
-
-<div class="row mt-5">
-    <h3 class="mb-4">Skills & Proficiency</h3>
-    <div class="col-md-6">
-        <h5>Python / Django</h5>
-        <div class="progress mb-3">
-            <div class="progress-bar bg-primary" role="progressbar" style="width: 90%">90%</div>
-        </div>
-
-        <h5>JavaScript / Bootstrap</h5>
-        <div class="progress mb-3">
-            <div class="progress-bar bg-primary" role="progressbar" style="width: 85%">85%</div>
-        </div>
-
-        <h5>HTML / CSS</h5>
-        <div class="progress mb-3">
-            <div class="progress-bar bg-primary" role="progressbar" style="width: 95%">95%</div>
-        </div>
-    </div>
-
-    <div class="col-md-6">
-        <h5>Database / SQL</h5>
-        <div class="progress mb-3">
-            <div class="progress-bar bg-primary" role="progressbar" style="width: 80%">80%</div>
-        </div>
-
-        <h5>REST APIs / DRF</h5>
-        <div class="progress mb-3">
-            <div class="progress-bar bg-primary" role="progressbar" style="width: 85%">85%</div>
-        </div>
-
-        <h5>Version Control / Git</h5>
-        <div class="progress mb-3">
-            <div class="progress-bar bg-primary" role="progressbar" style="width: 90%">90%</div>
-        </div>
-    </div>
-</div>
-<section class="mt-5">
-    <h2>My Resume</h2>
-    <p>You can view my experience and projects below or download my full resume.</p>
-    <a href="{% url 'resume_pdf' %}" class="btn btn-primary mt-3">
+    <div class="col-md-6 order-md-1">
+      <h1 class="fw-bold mb-3">Hi, I'm Riya Basnet 👋</h1>
+      <p class="lead text-muted">
+        I’m a dedicated <strong>Full-Stack Developer</strong> passionate about building secure, user-friendly, and visually beautiful web applications.
+        My work blends design thinking, clean code, and strong technical foundations to create meaningful digital experiences.
+      </p>
+      <a href="{% static 'resume/RiyaBasnet.pdf' %}" class="btn btn-primary mt-3" target="_blank">
         <i class="bi bi-download"></i> Download Resume (PDF)
-    </a>
-</section>
+      </a>
+    </div>
+  </div>
 
+  <!-- Profile Summary -->
+  <section class="mb-5">
+    <h2 class="fw-semibold border-bottom pb-2">Profile Summary</h2>
+    <p>
+      A motivated computing student with hands-on experience developing full-stack web applications using
+      <strong>Django</strong>, <strong>Bootstrap</strong>, and modern web technologies.  
+      I enjoy problem-solving, data analysis, and creating secure solutions that improve user interaction and reliability.
+      Adaptable and quick to learn new tools in the ever-evolving tech landscape.
+    </p>
+  </section>
+
+  <!-- Education -->
+  <section class="mb-5">
+    <h2 class="fw-semibold border-bottom pb-2">Education</h2>
+    <p><strong>BSc (Hons) Computing</strong> — Islington College, London Metropolitan University</p>
+    <p><em>2023 – Present</em></p>
+  </section>
+
+  <!-- Experience -->
+  <section class="mb-5">
+    <h2 class="fw-semibold border-bottom pb-2">Experience</h2>
+    <p><strong>Intern Python Developer</strong> — CloudsNepalWeb Company Pvt. Ltd.</p>
+    <p class="text-muted mb-1"> Aug 2025 – Present</p>
+    <ul>
+      <li>Developed responsive full-stack features using Django and Bootstrap.</li>
+      <li>Assisted in database modeling and optimizing SQL queries.</li>
+      <li>Implemented authentication and security improvements for internal dashboards.</li>
+    </ul>
+  </section>
+
+  <!-- Skills -->
+  <section class="mb-5">
+    <h2 class="fw-semibold border-bottom pb-2">Skills & Tools</h2>
+    <div class="row">
+      <div class="col-md-6">
+        <ul class="list-unstyled">
+          <li>🐍 Python, Django, REST Framework</li>
+          <li>💻 HTML5, CSS3, Bootstrap, JavaScript</li>
+          <li>🧠 Data Analysis (Pandas, NumPy, Matplotlib)</li>
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <ul class="list-unstyled">
+          <li>🗄️ MySQL, PostgreSQL</li>
+          <li>⚙️ Git, GitHub, CI/CD (GitHub Actions)</li>
+          
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section class="mb-5">
+    <h2 class="fw-semibold border-bottom pb-2">Highlighted Projects</h2>
+    <ul>
+      <li><strong>SneakSphere</strong> — Sneaker e-commerce web app featuring wishlist, authentication, and order tracking.</li>
+      <li><strong>Land Rental & Return</strong> — File-based system to track land availability and user bookings in realtime.
+.</li>
+      <li><strong>Recipe App</strong> — Dynamic Django web app to browse, upload, and manage recipes with image support.</li>
+    </ul>
+  </section>
+
+  <!-- Certifications -->
+  <section class="mb-5">
+    <h2 class="fw-semibold border-bottom pb-2">Certifications</h2>
+    <ul>
+      <li>Responsive Web Design — freeCodeCamp</li>
+      <li>Introduction to Cyber Security — Cisco Networking Academy</li>
+      <li>Python for Everybody — Coursera</li>
+    </ul>
+  </section>
+
+  <!-- CTA -->
+  <section>
+    <h2 class="fw-semibold border-bottom pb-2">Let’s Connect</h2>
+    <p>
+      I’m always open to collaboration and professional opportunities.  
+      Feel free to reach out or check out my work through the links below.
+    </p>
+    <a href="{% url 'contact' %}" class="btn btn-outline-primary me-2">Contact Me</a>
+    <a href="https://github.com/riyabasnet" target="_blank" class="btn btn-outline-dark me-2">GitHub</a>
+    <a href="https://www.linkedin.com/in/riyabasnet" target="_blank" class="btn btn-outline-primary">LinkedIn</a>
+  </section>
+
+</div>
 {% endblock %}
-
