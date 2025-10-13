@@ -1,0 +1,80 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}{{ post.title }} - Blog | Riya Basnet{% endblock %}
+
+{% block content %}
+<section class="container py-5" style="max-width: 850px;">
+  <!-- Post Header -->
+  <div class="text-center mb-4">
+    <h1 class="fw-bold">{{ post.title }}</h1>
+    <p class="text-muted small">
+      Published on {{ post.created_at|date:"F j, Y" }}
+    </p>
+  </div>
+
+  <!-- Cover Image -->
+  {% if post.thumbnail %}
+  <div class="mb-5">
+    <img src="{{ post.thumbnail.url }}" 
+         class="img-fluid rounded-4 shadow-sm blog-cover" 
+         alt="{{ post.title }}">
+  </div>
+  {% endif %}
+
+  <!-- Content -->
+  <article class="blog-content mb-5">
+    {{ post.content|linebreaks }}
+  </article>
+
+  <!-- Back Button -->
+  <div class="text-center">
+    <a href="{% url 'blog_list' %}" class="btn btn-outline-primary">
+      ← Back to Blog
+    </a>
+  </div>
+</section>
+
+<style>
+.blog-cover {
+  transition: transform 0.4s ease, box-shadow 0.3s ease;
+}
+.blog-cover:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+.blog-content {
+  line-height: 1.8;
+  font-size: 1.05rem;
+  color: #333;
+}
+.blog-content h2,
+.blog-content h3 {
+  margin-top: 1.6rem;
+  font-weight: 600;
+  color: #0d6efd;
+}
+.blog-content p {
+  margin-bottom: 1.2rem;
+}
+.blog-content img {
+  max-width: 100%;
+  border-radius: 10px;
+  margin: 1.5rem 0;
+}
+.blog-content code {
+  background-color: #f6f8fa;
+  padding: 3px 6px;
+  border-radius: 5px;
+  font-size: 0.9rem;
+}
+.blog-content pre {
+  background: #1e1e1e;
+  color: #f8f8f2;
+  padding: 15px;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-size: 0.9rem;
+}
+</style>
+{% endblock %}
