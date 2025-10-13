@@ -6,105 +6,143 @@
 {% block content %}
 <div class="container my-5">
 
-  <!-- Intro -->
+  <!-- Intro Section -->
   <div class="row align-items-center mb-5">
-    <div class="col-md-6 order-md-2 text-center">
-      <img src="{% static 'images/profile.jpg' %}" alt="Profile Photo" class="img-fluid rounded-circle shadow" style="max-width:260px;">
+    <div class="col-md-6 text-center mb-4 mb-md-0">
+      <div class="position-relative d-inline-block">
+        <img src="{% static 'images/profile.jpg' %}" alt="Profile Photo" 
+             class="img-fluid rounded-circle shadow-lg border border-3 border-primary" 
+             style="max-width:260px;">
+        <span class="position-absolute top-0 start-100 translate-middle p-2 bg-success border border-light rounded-circle"></span>
+      </div>
     </div>
-    <div class="col-md-6 order-md-1">
+    <div class="col-md-6">
       <h1 class="fw-bold mb-3">Hi, I'm Riya Basnet 👋</h1>
       <p class="lead text-muted">
-        I’m a dedicated <strong>Full-Stack Developer</strong> passionate about building secure, user-friendly, and visually beautiful web applications.
-        My work blends design thinking, clean code, and strong technical foundations to create meaningful digital experiences.
+        Full-Stack Developer passionate about building secure, user-friendly, and visually stunning web apps.
+        My work blends <strong>design thinking</strong>, clean code, and technical foundations to create meaningful digital experiences.
       </p>
       <a href="{% static 'resume/RiyaBasnet.pdf' %}" class="btn btn-primary mt-3" target="_blank">
-        <i class="bi bi-download"></i> Download Resume (PDF)
+        <i class="bi bi-download me-2"></i>Download Resume
       </a>
     </div>
   </div>
 
-  <!-- Profile Summary -->
-  <section class="mb-5">
-    <h2 class="fw-semibold border-bottom pb-2">Profile Summary</h2>
-    <p>
-      A motivated computing student with hands-on experience developing full-stack web applications using
-      <strong>Django</strong>, <strong>Bootstrap</strong>, and modern web technologies.  
-      I enjoy problem-solving, data analysis, and creating secure solutions that improve user interaction and reliability.
-      Adaptable and quick to learn new tools in the ever-evolving tech landscape.
-    </p>
-  </section>
+  <!-- Profile Summary Card -->
+  <div class="card mb-5 shadow-sm border-0">
+    <div class="card-body">
+      <h2 class="card-title fw-semibold border-bottom pb-2 mb-3">Profile Summary</h2>
+      <p class="card-text text-muted">
+        Motivated computing student with hands-on experience in full-stack development using <strong>Django</strong> and <strong>Bootstrap</strong>.
+        Skilled in problem-solving, data analysis, and building secure, efficient web solutions. Quick to adapt and learn emerging technologies.
+      </p>
+    </div>
+  </div>
 
-  <!-- Education -->
-  <section class="mb-5">
-    <h2 class="fw-semibold border-bottom pb-2">Education</h2>
-    <p><strong>BSc (Hons) Computing</strong> — Islington College, London Metropolitan University</p>
-    <p><em>2023 – Present</em></p>
-  </section>
+  <!-- Education & Experience -->
+  <div class="row mb-5">
+    <div class="col-md-6 mb-4 mb-md-0">
+      <div class="card h-100 shadow-sm border-0">
+        <div class="card-body">
+          <h2 class="card-title fw-semibold border-bottom pb-2 mb-3">Education</h2>
+          <p class="mb-1"><strong>BSc (Hons) Computing</strong></p>
+          <p class="text-muted">Islington College, London Metropolitan University</p>
+          <p class="text-muted"><em>2023 – Present</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card h-100 shadow-sm border-0">
+        <div class="card-body">
+          <h2 class="card-title fw-semibold border-bottom pb-2 mb-3">Experience</h2>
+          <p class="mb-1"><strong>Intern Python Developer</strong> — CloudsNepalWeb Company Pvt. Ltd.</p>
+          <p class="text-muted mb-2">Aug 2025 – Present</p>
+          <ul class="list-unstyled ps-3">
+            <li>✅ Developed responsive full-stack features using Django and Bootstrap.</li>
+            <li>✅ Assisted in database modeling and optimized SQL queries.</li>
+            <li>✅ Implemented authentication and security improvements for dashboards.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <!-- Experience -->
+  <!-- Skills & Tools -->
   <section class="mb-5">
-    <h2 class="fw-semibold border-bottom pb-2">Experience</h2>
-    <p><strong>Intern Python Developer</strong> — CloudsNepalWeb Company Pvt. Ltd.</p>
-    <p class="text-muted mb-1"> Aug 2025 – Present</p>
-    <ul>
-      <li>Developed responsive full-stack features using Django and Bootstrap.</li>
-      <li>Assisted in database modeling and optimizing SQL queries.</li>
-      <li>Implemented authentication and security improvements for internal dashboards.</li>
-    </ul>
-  </section>
-
-  <!-- Skills -->
-  <section class="mb-5">
-    <h2 class="fw-semibold border-bottom pb-2">Skills & Tools</h2>
-    <div class="row">
+    <h2 class="fw-semibold border-bottom pb-2 mb-3">Skills & Tools</h2>
+    <div class="row g-3">
       <div class="col-md-6">
-        <ul class="list-unstyled">
-          <li>🐍 Python, Django, REST Framework</li>
-          <li>💻 HTML5, CSS3, Bootstrap, JavaScript</li>
-          <li>🧠 Data Analysis (Pandas, NumPy, Matplotlib)</li>
-        </ul>
+        <div class="p-3 bg-light rounded shadow-sm h-100">
+          <h5 class="fw-semibold">Development</h5>
+          <ul class="list-unstyled mt-2">
+            <li>🐍 Python, Django, REST Framework</li>
+            <li>💻 HTML5, CSS3, Bootstrap, JavaScript</li>
+            <li>🧠 Data Analysis (Pandas, NumPy, Matplotlib)</li>
+          </ul>
+        </div>
       </div>
       <div class="col-md-6">
-        <ul class="list-unstyled">
-          <li>🗄️ MySQL, PostgreSQL</li>
-          <li>⚙️ Git, GitHub, CI/CD (GitHub Actions)</li>
-          
-        </ul>
+        <div class="p-3 bg-light rounded shadow-sm h-100">
+          <h5 class="fw-semibold">Tools & Databases</h5>
+          <ul class="list-unstyled mt-2">
+            <li>🗄️ MySQL, PostgreSQL</li>
+            <li>⚙️ Git, GitHub, CI/CD (GitHub Actions)</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Projects -->
   <section class="mb-5">
-    <h2 class="fw-semibold border-bottom pb-2">Highlighted Projects</h2>
-    <ul>
-      <li><strong>SneakSphere</strong> — Sneaker e-commerce web app featuring wishlist, authentication, and order tracking.</li>
-      <li><strong>Land Rental & Return</strong> — File-based system to track land availability and user bookings in realtime.
-.</li>
-      <li><strong>Recipe App</strong> — Dynamic Django web app to browse, upload, and manage recipes with image support.</li>
-    </ul>
+    <h2 class="fw-semibold border-bottom pb-2 mb-3">Highlighted Projects</h2>
+    <div class="row g-3">
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0">
+          <div class="card-body">
+            <h5 class="card-title">SneakSphere</h5>
+            <p class="card-text text-muted">E-commerce web app with wishlist, authentication, and order tracking.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0">
+          <div class="card-body">
+            <h5 class="card-title">Land Rental & Return</h5>
+            <p class="card-text text-muted">File-based system to track land availability and bookings in real time.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0">
+          <div class="card-body">
+            <h5 class="card-title">Recipe App</h5>
+            <p class="card-text text-muted">Dynamic Django app to browse, upload, and manage recipes with image support.</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- Certifications -->
   <section class="mb-5">
-    <h2 class="fw-semibold border-bottom pb-2">Certifications</h2>
-    <ul>
-      <li>Responsive Web Design — freeCodeCamp</li>
-      <li>Introduction to Cyber Security — Cisco Networking Academy</li>
-      <li>Python for Everybody — Coursera</li>
+    <h2 class="fw-semibold border-bottom pb-2 mb-3">Certifications</h2>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Responsive Web Design — freeCodeCamp</li>
+      <li class="list-group-item">Introduction to Cyber Security — Cisco Networking Academy</li>
+      <li class="list-group-item">Python for Everybody — Coursera</li>
     </ul>
   </section>
 
-  <!-- CTA -->
-  <section>
-    <h2 class="fw-semibold border-bottom pb-2">Let’s Connect</h2>
-    <p>
-      I’m always open to collaboration and professional opportunities.  
-      Feel free to reach out or check out my work through the links below.
+  <!-- Call To Action -->
+  <section class="text-center mb-5">
+    <h2 class="fw-semibold border-bottom pb-2 mb-3">Let’s Connect</h2>
+    <p class="mb-3 text-muted">
+      Open to collaboration and professional opportunities. Reach out or check my work below.
     </p>
-    <a href="{% url 'contact' %}" class="btn btn-outline-primary me-2">Contact Me</a>
-    <a href="https://github.com/riyabasnet" target="_blank" class="btn btn-outline-dark me-2">GitHub</a>
-    <a href="https://www.linkedin.com/in/riyabasnet" target="_blank" class="btn btn-outline-primary">LinkedIn</a>
+    <a href="{% url 'contact' %}" class="btn btn-outline-primary me-2 mb-2">Contact Me</a>
+    <a href="https://github.com/riyabasnet" target="_blank" class="btn btn-outline-dark me-2 mb-2">GitHub</a>
+    <a href="https://www.linkedin.com/in/riyabasnet" target="_blank" class="btn btn-outline-primary mb-2">LinkedIn</a>
   </section>
 
 </div>
