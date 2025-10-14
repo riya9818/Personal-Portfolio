@@ -1,46 +1,196 @@
 {% extends 'core/base.html' %}
 {% load static %}
-{% block title %}Home{% endblock %}
+{% block title %}Wiwii - Full-Stack Developer Portfolio{% endblock %}
+
 {% block content %}
-<div class="text-center mb-5">
-    <img src="{% static 'img/profile.jpg' %}" alt="Profile" class="rounded-circle" width="150">
-    <h1 class="mt-3 fw-bold">Hi, I'm Wiwii 👋</h1>
-    <p class="text-muted">A passionate full-stack developer crafting elegant web experiences.</p>
-    <a href="/projects/" class="btn btn-primary">View My Work</a>
-</div>
 
-<h2 class="mb-4">Recent Projects</h2>
-<div class="row">
-    {% for project in projects %}
-    <div class="col-md-4 mb-4">
-        <div class="card h-100">
-            {% if project.featured_image %}
-            <img src="{{ project.featured_image.url }}" class="card-img-top" alt="{{ project.title }}">
-            {% endif %}
-            <div class="card-body">
-                <h5 class="card-title">{{ project.title }}</h5>
-                <p class="card-text">{{ project.description|truncatewords:15 }}</p>
-                <a href="{{ project.get_absolute_url }}" class="btn btn-sm btn-outline-primary">View Details</a>
-            </div>
-        </div>
-    </div>
-    {% empty %}
-    <p>No projects yet.</p>
-    {% endfor %}
-</div>
+<!-- HERO SECTION -->
+<section class="hero-section">
+  <div class="container">
+    <div class="hero-content">
+      <!-- Subtle SVG Icon -->
+      <div class="hero-icon">
+        <i class="fas fa-code"></i>
+      </div>
 
-<h2 class="mt-5 mb-3">Testimonials</h2>
-<div class="row">
-    {% for t in testimonials %}
-    <div class="col-md-4">
-        <div class="card text-center p-3">
-            {% if t.photo %}<img src="{{ t.photo.url }}" class="rounded-circle mx-auto" width="80">{% endif %}
-            <p class="mt-3">"{{ t.feedback }}"</p>
-            <h6 class="fw-bold">{{ t.name }}</h6>
-            <small>{{ t.role }}</small>
-        </div>
+      <!-- Main Heading -->
+      <h1>Hi, I'm Wiwii</h1>
+
+      <!-- Subtitle -->
+      <p class="hero-subtitle">A passionate full-stack developer crafting elegant web experiences. Turning ideas into scalable, user-centric solutions.</p>
+
+      <!-- CTAs -->
+      <div class="hero-ctas">
+        <a href="/projects/" class="btn btn-primary">View My Work</a>
+        <a href="/contact/" class="btn btn-secondary">Get In Touch</a>
+      </div>
     </div>
-    {% endfor %}
-</div>
+  </div>
+</section>
+
+<!-- FEATURED PROJECTS SECTION -->
+<section class="projects-section">
+  <div class="container">
+    <h2 class="section-title">Featured Projects</h2>
+
+    <div class="projects-grid">
+      {% for project in projects %}
+      <div class="project-card">
+        {% if project.featured_image %}
+        <img src="{{ project.featured_image.url }}" alt="{{ project.title }}" class="project-image">
+        {% else %}
+        <div class="project-image" style="background-color: var(--secondary-bg);"></div>
+        {% endif %}
+        <div class="project-body">
+          <h3 class="project-title">{{ project.title }}</h3>
+          <p class="project-description">{{ project.description|truncatewords:20 }}</p>
+          <a href="{{ project.get_absolute_url }}" class="project-link">View Details →</a>
+        </div>
+      </div>
+      {% empty %}
+      <p style="grid-column: 1 / -1; text-align: center; color: var(--secondary-text);">No projects yet. Check back soon!</p>
+      {% endfor %}
+    </div>
+
+    <div class="projects-cta">
+      <a href="/projects/" class="btn btn-primary">Explore All Projects</a>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS SNAPSHOT SECTION -->
+<section class="skills-section">
+  <div class="container">
+    <h2 class="section-title">Tech Stack</h2>
+
+    <div class="skills-list">
+      <div class="skill-item">
+        <i class="fab fa-python skill-icon"></i>
+        <span class="skill-name">Python</span>
+      </div>
+      <div class="skill-item">
+        <i class="fab fa-django skill-icon" style="font-size: 1.3rem;"></i>
+        <span class="skill-name">Django</span>
+      </div>
+      <div class="skill-item">
+        <i class="fab fa-react skill-icon"></i>
+        <span class="skill-name">React</span>
+      </div>
+      <div class="skill-item">
+        <i class="fab fa-js-square skill-icon"></i>
+        <span class="skill-name">JavaScript</span>
+      </div>
+      <div class="skill-item">
+        <i class="fab fa-html5 skill-icon"></i>
+        <span class="skill-name">HTML5</span>
+      </div>
+      <div class="skill-item">
+        <i class="fab fa-css3-alt skill-icon"></i>
+        <span class="skill-name">CSS3</span>
+      </div>
+      <div class="skill-item">
+        <i class="fas fa-database skill-icon"></i>
+        <span class="skill-name">PostgreSQL</span>
+      </div>
+      <div class="skill-item">
+        <i class="fab fa-git-alt skill-icon"></i>
+        <span class="skill-name">Git</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS CAROUSEL SECTION -->
+<section class="testimonials-section">
+  <div class="container">
+    <h2 class="section-title">What People Say</h2>
+
+    <div class="carousel-wrapper">
+      <!-- Testimonial Card Container -->
+      <div id="testimonialCarousel">
+        {% for t in testimonials %}
+        <div class="testimonial-card" style="display: {% if forloop.first %}block{% else %}none{% endif %};" data-index="{{ forloop.counter0 }}">
+          <p class="testimonial-quote">"{{ t.feedback }}"</p>
+          <div class="testimonial-author">
+            <p class="testimonial-author-name">{{ t.name }}</p>
+            <p class="testimonial-author-role">{{ t.role }}</p>
+          </div>
+        </div>
+        {% empty %}
+        <div class="testimonial-card">
+          <p class="testimonial-quote">Testimonials coming soon...</p>
+        </div>
+        {% endfor %}
+      </div>
+
+      <!-- Navigation Controls -->
+      {% if testimonials|length > 1 %}
+      <div class="carousel-nav">
+        <button class="carousel-btn" id="prevBtn" aria-label="Previous testimonial">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="carousel-btn" id="nextBtn" aria-label="Next testimonial">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+
+      <!-- Indicators -->
+      <div class="carousel-indicator" id="indicatorContainer">
+        {% for t in testimonials %}
+        <div class="dot {% if forloop.first %}active{% endif %}" data-index="{{ forloop.counter0 }}"></div>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<!-- CAROUSEL SCRIPT -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const carousel = document.getElementById('testimonialCarousel');
+    const cards = carousel.querySelectorAll('.testimonial-card');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const dots = document.querySelectorAll('.dot');
+
+    let currentIndex = 0;
+
+    function showCard(index) {
+      cards.forEach(card => card.style.display = 'none');
+      dots.forEach(dot => dot.classList.remove('active'));
+
+      if (index >= cards.length) {
+        currentIndex = 0;
+      } else if (index < 0) {
+        currentIndex = cards.length - 1;
+      }
+
+      cards[currentIndex].style.display = 'block';
+      dots[currentIndex].classList.add('active');
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', function() {
+        currentIndex--;
+        showCard(currentIndex);
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function() {
+        currentIndex++;
+        showCard(currentIndex);
+      });
+    }
+
+    dots.forEach(dot => {
+      dot.addEventListener('click', function() {
+        currentIndex = parseInt(this.getAttribute('data-index'));
+        showCard(currentIndex);
+      });
+    });
+  });
+</script>
 
 {% endblock %}
