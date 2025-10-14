@@ -1,17 +1,57 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+{% load static %}
+
+<nav class="navbar navbar-expand-lg navbar-dark">
   <div class="container">
-    <a class="navbar-brand fw-bold" href="/">MyPortfolio</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+    <!-- Brand/Logo -->
+    <a class="navbar-brand" href="/">
+      <i class="fas fa-code-branch"></i>
+      <span>Wiwii</span>
+    </a>
+
+    <!-- Hamburger Toggle -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navmenu">
+
+    <!-- Navigation Links -->
+    <div class="collapse navbar-collapse" id="navbarMenu">
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="/projects/">Projects</a></li>
-        <li class="nav-item"><a class="nav-link" href="/blog/">Blog</a></li>
-        <li class="nav-item"><a class="nav-link" href="/testimonials/">Testimonials</a></li>
-        <li class="nav-item"><a class="nav-link" href="/about/">About</a></li>
-        <li class="nav-item"><a class="nav-link" href="/contact/">Contact</a></li>
+        <li class="nav-item">
+          <a class="nav-link" href="/">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/projects/">
+            <i class="fas fa-briefcase"></i>
+            <span>Projects</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/blog/">
+            <i class="fas fa-pen-fancy"></i>
+            <span>Blog</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/testimonials/">
+            <i class="fas fa-star"></i>
+            <span>Testimonials</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about/">
+            <i class="fas fa-user"></i>
+            <span>About</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-link-cta" href="/contact/">
+            <i class="fas fa-envelope"></i>
+            <span>Contact</span>
+          </a>
+        </li>
       </ul>
     </div>
   </div>
