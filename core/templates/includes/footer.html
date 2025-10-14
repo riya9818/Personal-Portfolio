@@ -1,5 +1,61 @@
-<footer class="bg-dark text-white py-4 mt-5">
-  <div class="container text-center">
-    <p class="mb-0">© {% now "Y" %} MyPortfolio. All rights reserved.</p>
+{% load static %}
+
+<footer>
+  <div class="container">
+    <div class="footer-content">
+      <!-- About Section -->
+      <div class="footer-section">
+        <h4 class="footer-title">
+          <i class="fas fa-code-branch"></i>
+          Riya Basnet
+        </h4>
+        <p>Full-stack developer passionate about creating elegant, user-centric web experiences.</p>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="footer-section">
+        <h5 class="footer-subtitle">Quick Links</h5>
+        <div class="footer-links">
+          <a href="/">Home</a>
+          <a href="/projects/">Projects</a>
+          <a href="/blog/">Blog</a>
+          <a href="/about/">About</a>
+          <a href="/contact/">Contact</a>
+        </div>
+      </div>
+
+      <!-- Social Links -->
+      <div class="footer-section">
+        <h5 class="footer-subtitle">Connect</h5>
+        <div class="social-links">
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="mailto:your.email@example.com" aria-label="Email">
+            <i class="fas fa-envelope"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="footer-divider"></div>
+
+    <!-- Copyright -->
+    <div class="footer-bottom">
+      <p>&copy; <span id="year"></span> RiRi. All rights reserved.</p>
+      <p class="footer-credit">Crafted with <i class="fas fa-heart"></i> using Python & Django</p>
+    </div>
   </div>
 </footer>
+
+<script>
+  // Auto-update year in footer
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
