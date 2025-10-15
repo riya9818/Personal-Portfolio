@@ -4,27 +4,22 @@
 
 {% block content %}
 
-<!-- Projects Hero Section -->
-<section class="projects-hero">
-  <div class="container">
-    <div class="hero-content-projects">
-      <h1>Portfolio</h1>
-      <p class="hero-subtitle-projects">A curated collection of my work—where code meets creativity and problems find elegant solutions.</p>
-    </div>
-  </div>
-</section>
-
 <!-- Projects Grid Section -->
 <section class="projects-grid-section">
   <div class="container">
     
-    <!-- Filter/Sort Bar (Optional - can be activated later) -->
-    <div class="projects-filter-bar">
-      <div class="filter-count">
-        <span class="count-number">{{ projects|length }}</span>
-        <span class="count-label">Project{% if projects|length != 1 %}s{% endif %}</span>
+    <!-- Page Header -->
+    <div class="projects-header">
+      <div class="header-left">
+        <h1>Portfolio</h1>
+        <p class="header-subtitle">Work that solves real problems with elegant code and thoughtful design.</p>
       </div>
-      <!-- Future: Add filter buttons here -->
+      <div class="header-right">
+        <div class="filter-count">
+          <span class="count-number">{{ projects|length }}</span>
+          <span class="count-label">Project{% if projects|length != 1 %}s{% endif %}</span>
+        </div>
+      </div>
     </div>
 
     <!-- Projects Grid -->
@@ -90,61 +85,62 @@
    PROJECTS PAGE STYLES
    ============================================ */
 
-/* Projects Hero */
-.projects-hero {
-  background-color: var(--dominant-bg);
-  padding: 6rem 0 4rem;
-  text-align: center;
-}
-
-.hero-content-projects {
-  max-width: 700px;
-  margin: 0 auto;
-}
-
-.projects-hero h1 {
-  font-size: 3rem;
-  font-weight: 700;
-  color: var(--primary-text);
-  margin-bottom: 1rem;
-}
-
-.hero-subtitle-projects {
-  font-size: 1.1rem;
-  color: var(--secondary-text);
-  line-height: 1.6;
-}
-
 /* Projects Grid Section */
 .projects-grid-section {
   background-color: var(--dominant-bg);
   padding: 3rem 0 5rem;
+  min-height: 100vh;
 }
 
-/* Filter Bar */
-.projects-filter-bar {
+/* Page Header */
+.projects-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
   margin-bottom: 3rem;
-  padding-bottom: 1.5rem;
+  padding-bottom: 2rem;
   border-bottom: 1px solid var(--border-color);
+  gap: 2rem;
+}
+
+.header-left h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary-text);
+  margin-bottom: 0.5rem;
+}
+
+.header-subtitle {
+  font-size: 1rem;
+  color: var(--secondary-text);
+  line-height: 1.5;
+  max-width: 500px;
+  margin: 0;
+}
+
+.header-right {
+  flex-shrink: 0;
 }
 
 .filter-count {
   display: flex;
   align-items: baseline;
   gap: 0.5rem;
+  background-color: var(--secondary-bg);
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
 }
 
 .count-number {
   font-size: 2rem;
   font-weight: 700;
   color: var(--accent-gold);
+  line-height: 1;
 }
 
 .count-label {
-  font-size: 1rem;
+  font-size: 0.85rem;
   color: var(--secondary-text);
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -345,27 +341,27 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .projects-hero h1 {
-    font-size: 2.2rem;
+  .projects-header {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
-  .hero-subtitle-projects {
-    font-size: 1rem;
+  .header-left h1 {
+    font-size: 2rem;
+  }
+
+  .header-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .filter-count {
+    width: 100%;
+    justify-content: center;
   }
 
   .projects-grid-main {
     grid-template-columns: 1fr;
     gap: 2rem;
-  }
-
-  .filter-count {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.25rem;
-  }
-
-  .count-number {
-    font-size: 1.5rem;
   }
 
   .project-content-main {
@@ -378,16 +374,16 @@
 }
 
 @media (max-width: 480px) {
-  .projects-hero {
-    padding: 4rem 0 3rem;
-  }
-
-  .projects-hero h1 {
+  .header-left h1 {
     font-size: 1.8rem;
   }
 
   .project-image-wrapper-main {
     height: 200px;
+  }
+
+  .count-number {
+    font-size: 1.5rem;
   }
 }
 </style>
