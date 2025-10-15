@@ -1,3 +1,4 @@
+
 {% extends 'core/base.html' %}
 {% load static %}
 {% block title %}Wiwii - Full-Stack Developer Portfolio{% endblock %}
@@ -43,7 +44,7 @@
         {% endif %}
         <div class="project-body">
           <h3 class="project-title">{{ project.title }}</h3>
-          <p class="project-description">{{ project.description|truncatewords:20 }}</p>
+          <p class="project-description">{{ project.description|truncatewords_html:20|safe }}</p>
           <a href="{{ project.get_absolute_url }}" class="project-link">View Details →</a>
         </div>
       </div>
