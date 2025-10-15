@@ -24,7 +24,9 @@
 
   <!-- Content -->
   <article class="blog-content mb-5">
-    {{ post.content|linebreaks }}
+    {{ post.content|safe }}
+
+
   </article>
 
   <!-- Back Button -->
