@@ -1,24 +1,395 @@
 {% extends 'core/base.html' %}
 {% load static %}
-{% block title %}Projects - My Portfolio{% endblock %}
+{% block title %}Projects | Wiwii - Full-Stack Developer{% endblock %}
+
 {% block content %}
 
-<h2 class="mb-4">My Projects</h2>
-<div class="row">
-    {% for project in projects %}
-    <div class="col-md-4 mb-4">
-        <div class="card">
-            {% if project.featured_image %}
-            <img src="{{ project.featured_image.url }}" class="card-img-top" alt="{{ project.title }}">
-            {% endif %}
-            <div class="card-body">
-                <h5 class="card-title">{{ project.title }}</h5>
-                <p class="card-text">{{ project.description|truncatewords:20 }}</p>
-                <a href="{{ project.get_absolute_url }}" class="btn btn-primary">View</a>
-            </div>
-        </div>
+<!-- Projects Hero Section -->
+<section class="projects-hero">
+  <div class="container">
+    <div class="hero-content-projects">
+      <h1>Portfolio</h1>
+      <p class="hero-subtitle-projects">A curated collection of my work—where code meets creativity and problems find elegant solutions.</p>
     </div>
-    {% endfor %}
-</div>
+  </div>
+</section>
+
+<!-- Projects Grid Section -->
+<section class="projects-grid-section">
+  <div class="container">
+    
+    <!-- Filter/Sort Bar (Optional - can be activated later) -->
+    <div class="projects-filter-bar">
+      <div class="filter-count">
+        <span class="count-number">{{ projects|length }}</span>
+        <span class="count-label">Project{% if projects|length != 1 %}s{% endif %}</span>
+      </div>
+      <!-- Future: Add filter buttons here -->
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="projects-grid-main">
+      {% for project in projects %}
+      <div class="project-card-main">
+        <div class="project-image-wrapper-main">
+          {% if project.featured_image %}
+          <img src="{{ project.featured_image.url }}" alt="{{ project.title }}" class="project-image-main">
+          {% else %}
+          <div class="project-image-placeholder">
+            <i class="fas fa-image"></i>
+          </div>
+          {% endif %}
+          <div class="project-overlay-main">
+            <a href="{{ project.get_absolute_url }}" class="btn btn-primary">View Project</a>
+          </div>
+        </div>
+        
+        <div class="project-content-main">
+          <h3 class="project-title-main">{{ project.title }}</h3>
+          <p class="project-description-main">{{ project.description|truncatewords:25 }}</p>
+          
+          <!-- Tech Stack Tags (if available) -->
+          {% if project.tech_stack %}
+          <div class="project-tags-main">
+            {% for tech in project.tech_stack %}
+            <span class="tech-tag">{{ tech }}</span>
+            {% endfor %}
+          </div>
+          {% endif %}
+          
+          <a href="{{ project.get_absolute_url }}" class="project-link-main">
+            Explore Case Study <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+      {% empty %}
+      <div class="empty-state">
+        <i class="fas fa-folder-open"></i>
+        <h3>No Projects Yet</h3>
+        <p>Currently working on something amazing. Check back soon!</p>
+      </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="projects-cta-section">
+  <div class="container">
+    <div class="cta-content-projects">
+      <h2>Have a project in mind?</h2>
+      <p>Let's collaborate and build something extraordinary together.</p>
+      <a href="/contact/" class="btn btn-primary btn-lg">Start a Conversation</a>
+    </div>
+  </div>
+</section>
+
+<style>
+/* ============================================
+   PROJECTS PAGE STYLES
+   ============================================ */
+
+/* Projects Hero */
+.projects-hero {
+  background-color: var(--dominant-bg);
+  padding: 6rem 0 4rem;
+  text-align: center;
+}
+
+.hero-content-projects {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.projects-hero h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--primary-text);
+  margin-bottom: 1rem;
+}
+
+.hero-subtitle-projects {
+  font-size: 1.1rem;
+  color: var(--secondary-text);
+  line-height: 1.6;
+}
+
+/* Projects Grid Section */
+.projects-grid-section {
+  background-color: var(--dominant-bg);
+  padding: 3rem 0 5rem;
+}
+
+/* Filter Bar */
+.projects-filter-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.filter-count {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.count-number {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent-gold);
+}
+
+.count-label {
+  font-size: 1rem;
+  color: var(--secondary-text);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Projects Grid */
+.projects-grid-main {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2.5rem;
+}
+
+/* Project Card */
+.project-card-main {
+  background-color: var(--secondary-bg);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.project-card-main:hover {
+  transform: translateY(-12px);
+  border-color: var(--accent-gold);
+  box-shadow: 0 20px 40px rgba(212, 160, 23, 0.15);
+}
+
+/* Project Image */
+.project-image-wrapper-main {
+  position: relative;
+  height: 240px;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(10, 10, 10, 0.9), rgba(28, 28, 28, 0.9));
+}
+
+.project-image-main {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%);
+  transition: all 0.4s ease;
+}
+
+.project-card-main:hover .project-image-main {
+  filter: grayscale(0%);
+  transform: scale(1.05);
+}
+
+.project-image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--secondary-bg);
+  color: var(--secondary-text);
+  font-size: 3rem;
+}
+
+/* Project Overlay */
+.project-overlay-main {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.project-card-main:hover .project-overlay-main {
+  opacity: 1;
+}
+
+/* Project Content */
+.project-content-main {
+  padding: 2rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-title-main {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--primary-text);
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+}
+
+.project-description-main {
+  color: var(--secondary-text);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+/* Tech Tags */
+.project-tags-main {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.tech-tag {
+  display: inline-block;
+  background-color: rgba(212, 160, 23, 0.1);
+  color: var(--accent-gold);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: 1px solid rgba(212, 160, 23, 0.3);
+}
+
+/* Project Link */
+.project-link-main {
+  color: var(--accent-gold);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+  margin-top: auto;
+}
+
+.project-link-main:hover {
+  color: #E8B923;
+  transform: translateX(6px);
+}
+
+.project-link-main i {
+  font-size: 0.85rem;
+  transition: transform 0.3s ease;
+}
+
+.project-link-main:hover i {
+  transform: translateX(4px);
+}
+
+/* Empty State */
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 5rem 2rem;
+  color: var(--secondary-text);
+}
+
+.empty-state i {
+  font-size: 4rem;
+  color: var(--secondary-text);
+  margin-bottom: 1.5rem;
+  opacity: 0.5;
+}
+
+.empty-state h3 {
+  font-size: 1.8rem;
+  color: var(--primary-text);
+  margin-bottom: 0.75rem;
+}
+
+.empty-state p {
+  font-size: 1rem;
+  color: var(--secondary-text);
+}
+
+/* Projects CTA Section */
+.projects-cta-section {
+  background: linear-gradient(135deg, var(--secondary-bg), var(--dominant-bg));
+  padding: 5rem 0;
+  text-align: center;
+  border-top: 1px solid var(--border-color);
+}
+
+.cta-content-projects h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--primary-text);
+  margin-bottom: 1rem;
+}
+
+.cta-content-projects p {
+  font-size: 1.1rem;
+  color: var(--secondary-text);
+  margin-bottom: 2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .projects-hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero-subtitle-projects {
+    font-size: 1rem;
+  }
+
+  .projects-grid-main {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .filter-count {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+
+  .count-number {
+    font-size: 1.5rem;
+  }
+
+  .project-content-main {
+    padding: 1.5rem;
+  }
+
+  .cta-content-projects h2 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .projects-hero {
+    padding: 4rem 0 3rem;
+  }
+
+  .projects-hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .project-image-wrapper-main {
+    height: 200px;
+  }
+}
+</style>
 
 {% endblock %}
