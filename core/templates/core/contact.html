@@ -1,37 +1,463 @@
 {% extends 'core/base.html' %}
-{% block title %}Contact - My Portfolio{% endblock %}
+{% load static %}
+
+{% block title %}Contact | Wiwii{% endblock %}
+
 {% block content %}
 
-<h2 class="mb-4">Get In Touch</h2>
-<p>If you want to collaborate or just say hi, fill out the form below:</p>
+<!-- Contact Header -->
+<section class="contact-header">
+  <div class="container">
+    <h1>Let's Connect</h1>
+    <p class="contact-subtitle">Got an idea? A question? Or just want to chat? Drop me a message and I'll get back to you as soon as possible.</p>
+  </div>
+</section>
 
-<div class="row">
-    <div class="col-md-6">
+<!-- Contact Content -->
+<section class="contact-section">
+  <div class="container">
+    <div class="contact-grid">
+      
+      <!-- Contact Form -->
+      <div class="contact-form-wrapper">
+        <h2>Send Me a Message</h2>
+        
+        <!-- Success/Error Messages -->
         {% if messages %}
-            {% for message in messages %}
-                <div class="alert alert-{{ message.tags }}">{{ message }}</div>
-            {% endfor %}
+          {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-custom">
+              <i class="fas fa-check-circle"></i>
+              {{ message }}
+            </div>
+          {% endfor %}
         {% endif %}
-        <form method="post" novalidate>
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-primary">Send Message</button>
+
+        <form method="post" novalidate class="contact-form">
+          {% csrf_token %}
+          
+          <!-- Name Field -->
+          <div class="form-group">
+            <label for="{{ form.name.id_for_label }}" class="form-label">Name</label>
+            <input type="text" 
+                   id="{{ form.name.id_for_label }}" 
+                   name="name" 
+                   class="form-control" 
+                   placeholder="Your name"
+                   required>
+            {% if form.name.errors %}
+              <div class="form-error">{{ form.name.errors.0 }}</div>
+            {% endif %}
+          </div>
+
+          <!-- Email Field -->
+          <div class="form-group">
+            <label for="{{ form.email.id_for_label }}" class="form-label">Email</label>
+            <input type="email" 
+                   id="{{ form.email.id_for_label }}" 
+                   name="email" 
+                   class="form-control" 
+                   placeholder="your@email.com"
+                   required>
+            {% if form.email.errors %}
+              <div class="form-error">{{ form.email.errors.0 }}</div>
+            {% endif %}
+          </div>
+
+          <!-- Subject Field -->
+          <div class="form-group">
+            <label for="{{ form.subject.id_for_label }}" class="form-label">Subject</label>
+            <input type="text" 
+                   id="{{ form.subject.id_for_label }}" 
+                   name="subject" 
+                   class="form-control" 
+                   placeholder="What is this about?"
+                   required>
+            {% if form.subject.errors %}
+              <div class="form-error">{{ form.subject.errors.0 }}</div>
+            {% endif %}
+          </div>
+
+          <!-- Message Field -->
+          <div class="form-group">
+            <label for="{{ form.message.id_for_label }}" class="form-label">Message</label>
+            <textarea id="{{ form.message.id_for_label }}" 
+                      name="message" 
+                      class="form-control form-textarea" 
+                      placeholder="Tell me what's on your mind..."
+                      rows="5"
+                      required></textarea>
+            {% if form.message.errors %}
+              <div class="form-error">{{ form.message.errors.0 }}</div>
+            {% endif %}
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" class="btn btn-primary btn-submit">
+            <i class="fas fa-paper-plane"></i>
+            Send Message
+          </button>
         </form>
-    </div>
+      </div>
 
-    <div class="col-md-6 mt-4 mt-md-0">
-        <h5>Contact Info</h5>
-        <p><strong>Email:</strong> wiwii@example.com</p>
-        <p><strong>Phone:</strong> +977 98XXXXXXX</p>
-        <p><strong>Location:</strong> Kathmandu, Nepal</p>
+      <!-- Contact Info -->
+      <div class="contact-info-wrapper">
+        <h2>Get In Touch</h2>
+        
+        <div class="info-section">
+          <h3 class="info-title">
+            <i class="fas fa-envelope"></i>
+            Email
+          </h3>
+          <p class="info-content">
+            <a href="mailto:wiwii@example.com" class="info-link">wiwii@example.com</a>
+          </p>
+          <p class="info-note">I typically respond within 24 hours</p>
+        </div>
 
-        <h5 class="mt-4">Social</h5>
-        <p>
-            <a href="#" class="me-3">LinkedIn</a>
-            <a href="#" class="me-3">GitHub</a>
-            <a href="#">Twitter</a>
-        </p>
+        <div class="info-section">
+          <h3 class="info-title">
+            <i class="fas fa-phone"></i>
+            Phone
+          </h3>
+          <p class="info-content">
+            <a href="tel:+977-98XXXXXXX" class="info-link">+977 98XXXXXXX</a>
+          </p>
+          <p class="info-note">Available for calls & WhatsApp</p>
+        </div>
+
+        <div class="info-section">
+          <h3 class="info-title">
+            <i class="fas fa-map-marker-alt"></i>
+            Location
+          </h3>
+          <p class="info-content">Kathmandu, Nepal</p>
+          <p class="info-note">Open to remote collaboration</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="social-section">
+          <h3 class="info-title">
+            <i class="fas fa-link"></i>
+            Connect on Social
+          </h3>
+          <div class="social-links-contact">
+            <a href="https://linkedin.com/in/riyabasnet" target="_blank" rel="noopener noreferrer" class="social-link" title="LinkedIn">
+              <i class="fab fa-linkedin"></i>
+              <span>LinkedIn</span>
+            </a>
+            <a href="https://github.com/riyabasnet" target="_blank" rel="noopener noreferrer" class="social-link" title="GitHub">
+              <i class="fab fa-github"></i>
+              <span>GitHub</span>
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-link" title="Twitter">
+              <i class="fab fa-twitter"></i>
+              <span>Twitter</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
     </div>
-</div>
+  </div>
+</section>
+
+<style>
+/* ============================================
+   CONTACT PAGE STYLES
+   ============================================ */
+
+/* Contact Header */
+.contact-header {
+  background-color: var(--dominant-bg);
+  padding: 3rem 0 2rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.contact-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.contact-subtitle {
+  font-size: 1.1rem;
+  color: var(--secondary-text);
+  max-width: 700px;
+  line-height: 1.7;
+}
+
+/* Contact Section */
+.contact-section {
+  background-color: var(--dominant-bg);
+  padding: 4rem 0 5rem;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+/* Contact Form */
+.contact-form-wrapper h2 {
+  font-size: 1.8rem;
+  color: var(--primary-text);
+  margin-bottom: 2rem;
+}
+
+.alert-custom {
+  background-color: rgba(212, 160, 23, 0.1);
+  border: 1px solid var(--accent-gold);
+  color: var(--primary-text);
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.alert-custom i {
+  color: var(--accent-gold);
+  font-size: 1.2rem;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--primary-text);
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.form-control {
+  background-color: var(--secondary-bg);
+  border: 2px solid var(--border-color);
+  color: var(--primary-text);
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: all 0.3s ease;
+}
+
+.form-control::placeholder {
+  color: rgba(168, 168, 168, 0.7);
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--accent-gold);
+  background-color: rgba(212, 160, 23, 0.05);
+  box-shadow: 0 0 0 3px rgba(212, 160, 23, 0.1);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 140px;
+}
+
+.form-error {
+  color: #ff6b6b;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+.btn-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.85rem 2rem;
+  font-weight: 600;
+  margin-top: 1rem;
+}
+
+.btn-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(212, 160, 23, 0.3);
+}
+
+/* Contact Info */
+.contact-info-wrapper h2 {
+  font-size: 1.8rem;
+  color: var(--primary-text);
+  margin-bottom: 2rem;
+}
+
+.info-section {
+  margin-bottom: 2.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.info-section:last-of-type {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.info-section:hover {
+  transform: translateX(4px);
+}
+
+.info-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--accent-gold);
+  margin-bottom: 0.75rem;
+}
+
+.info-title i {
+  font-size: 1.3rem;
+}
+
+.info-content {
+  color: var(--primary-text);
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.info-link {
+  color: var(--accent-gold);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.info-link:hover {
+  color: #E8B923;
+  text-decoration: underline;
+}
+
+.info-note {
+  color: var(--secondary-text);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.divider {
+  height: 1px;
+  background-color: var(--border-color);
+  margin: 2rem 0;
+}
+
+/* Social Section */
+.social-section {
+  margin-top: 2rem;
+}
+
+.social-links-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--primary-text);
+  text-decoration: none;
+  padding: 0.75rem 1rem;
+  background-color: var(--secondary-bg);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  border: 1px solid var(--border-color);
+}
+
+.social-link:hover {
+  background-color: rgba(212, 160, 23, 0.1);
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+  transform: translateX(6px);
+}
+
+.social-link i {
+  font-size: 1.2rem;
+}
+
+.social-link span {
+  font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-header h1 {
+    font-size: 2rem;
+  }
+
+  .contact-subtitle {
+    font-size: 1rem;
+  }
+
+  .contact-form-wrapper h2,
+  .contact-info-wrapper h2 {
+    font-size: 1.5rem;
+  }
+
+  .contact-grid {
+    gap: 2rem;
+  }
+
+  .form-group {
+    gap: 0.5rem;
+  }
+
+  .info-section {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-section {
+    padding: 2rem 0 3rem;
+  }
+
+  .contact-form {
+    gap: 1rem;
+  }
+
+  .btn-submit {
+    padding: 0.75rem 1.5rem;
+  }
+
+  .social-links-contact {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .social-link {
+    flex: 1;
+    min-width: 120px;
+    justify-content: center;
+  }
+}
+</style>
 
 {% endblock %}
