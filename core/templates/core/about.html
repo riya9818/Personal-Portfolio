@@ -1,149 +1,715 @@
 {% extends 'core/base.html' %}
 {% load static %}
 
-{% block title %}About - Riya Basnet{% endblock %}
+{% block title %}About Wiwii | Full-Stack Developer{% endblock %}
 
 {% block content %}
-<div class="container my-5">
 
-  <!-- Intro Section -->
-  <div class="row align-items-center mb-5">
-    <div class="col-md-6 text-center mb-4 mb-md-0">
-      <div class="position-relative d-inline-block">
-        <img src="{% static 'images/profile.jpg' %}" alt="Profile Photo" 
-             class="img-fluid rounded-circle shadow-lg border border-3 border-primary" 
-             style="max-width:260px;">
-        <span class="position-absolute top-0 start-100 translate-middle p-2 bg-success border border-light rounded-circle"></span>
+<!-- Hero Section with Profile -->
+<section class="about-hero">
+  <div class="container">
+    <div class="about-hero-grid">
+      <div class="about-profile-image">
+        <img src="{% static 'images/profile.jpg' %}" alt="Riya Basnet" class="profile-img-large">
       </div>
-    </div>
-    <div class="col-md-6">
-      <h1 class="fw-bold mb-3">Hi, I'm Riya Basnet 👋</h1>
-      <p class="lead text-muted">
-        Full-Stack Developer passionate about building secure, user-friendly, and visually stunning web apps.
-        My work blends <strong>design thinking</strong>, clean code, and technical foundations to create meaningful digital experiences.
-      </p>
-      <a href="{% static 'resume/RiyaBasnet.pdf' %}" class="btn btn-primary mt-3" target="_blank">
-        <i class="bi bi-download me-2"></i>Download Resume
-      </a>
-    </div>
-  </div>
-
-  <!-- Profile Summary Card -->
-  <div class="card mb-5 shadow-sm border-0">
-    <div class="card-body">
-      <h2 class="card-title fw-semibold border-bottom pb-2 mb-3">Profile Summary</h2>
-      <p class="card-text text-muted">
-        Motivated computing student with hands-on experience in full-stack development using <strong>Django</strong> and <strong>Bootstrap</strong>.
-        Skilled in problem-solving, data analysis, and building secure, efficient web solutions. Quick to adapt and learn emerging technologies.
-      </p>
-    </div>
-  </div>
-
-  <!-- Education & Experience -->
-  <div class="row mb-5">
-    <div class="col-md-6 mb-4 mb-md-0">
-      <div class="card h-100 shadow-sm border-0">
-        <div class="card-body">
-          <h2 class="card-title fw-semibold border-bottom pb-2 mb-3">Education</h2>
-          <p class="mb-1"><strong>BSc (Hons) Computing</strong></p>
-          <p class="text-muted">Islington College, London Metropolitan University</p>
-          <p class="text-muted"><em>2023 – Present</em></p>
+      <div class="about-hero-content">
+        <h1>About Me</h1>
+        <p class="about-intro">I'm a full-stack developer who genuinely enjoys solving problems through code. I build web applications that are fast, accessible, and actually work.</p>
+        <p class="about-subtext">Currently interning at CloudsNepalWeb, studying BSc Computing, and constantly learning new ways to build better products.</p>
+        <div class="about-ctas">
+          <a href="{% static 'resume/RiyaBasnet.pdf' %}" class="btn btn-primary" target="_blank">
+            <i class="fas fa-download"></i> Resume
+          </a>
+          <a href="https://github.com" target="_blank" class="btn btn-secondary">
+            <i class="fab fa-github"></i> GitHub
+          </a>
         </div>
       </div>
     </div>
-    <div class="col-md-6">
-      <div class="card h-100 shadow-sm border-0">
-        <div class="card-body">
-          <h2 class="card-title fw-semibold border-bottom pb-2 mb-3">Experience</h2>
-          <p class="mb-1"><strong>Intern Python Developer</strong> — CloudsNepalWeb Company Pvt. Ltd.</p>
-          <p class="text-muted mb-2">Aug 2025 – Present</p>
-          <ul class="list-unstyled ps-3">
-            <li>✅ Developed responsive full-stack features using Django and Bootstrap.</li>
-            <li>✅ Assisted in database modeling and optimized SQL queries.</li>
-            <li>✅ Implemented authentication and security improvements for dashboards.</li>
+  </div>
+</section>
+
+<!-- Story Section -->
+<section class="story-section">
+  <div class="container">
+    <div class="story-content">
+      <h2>My Journey</h2>
+      <div class="story-grid">
+        <div class="story-card">
+          <div class="story-number">01</div>
+          <h3>Started with Curiosity</h3>
+          <p>I got into coding because I wanted to understand how things worked. A simple "Hello World" turned into a genuine passion for building things that matter.</p>
+        </div>
+        <div class="story-card">
+          <div class="story-number">02</div>
+          <h3>Learning by Doing</h3>
+          <p>Throughout my degree in Computing, I've worked on real projects—e-commerce platforms, data systems, web applications. Each one taught me something valuable about clean code and user experience.</p>
+        </div>
+        <div class="story-card">
+          <div class="story-number">03</div>
+          <h3>Growing as a Developer</h3>
+          <p>Now at CloudsNepalWeb, I'm applying everything I've learned while discovering what I don't know yet. Security, performance, architecture—there's always something new to explore.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- What I Do Section -->
+<section class="what-i-do-section">
+  <div class="container">
+    <h2>What I Do</h2>
+    <div class="what-i-do-grid">
+      <div class="what-i-do-card">
+        <div class="do-icon">
+          <i class="fas fa-code"></i>
+        </div>
+        <h3>Backend Development</h3>
+        <p>I build robust APIs and server logic with Python and Django. Focus on performance, security, and writing code that's easy to understand and maintain.</p>
+        <div class="tech-list-inline">
+          <span>Python</span>
+          <span>Django</span>
+          <span>PostgreSQL</span>
+          <span>REST APIs</span>
+        </div>
+      </div>
+      <div class="what-i-do-card">
+        <div class="do-icon">
+          <i class="fas fa-palette"></i>
+        </div>
+        <h3>Frontend Development</h3>
+        <p>I create interfaces that are clean, intuitive, and beautiful. Using modern HTML, CSS, and JavaScript to build experiences that feel responsive and alive.</p>
+        <div class="tech-list-inline">
+          <span>HTML5</span>
+          <span>CSS3</span>
+          <span>JavaScript</span>
+          <span>Bootstrap</span>
+        </div>
+      </div>
+      <div class="what-i-do-card">
+        <div class="do-icon">
+          <i class="fas fa-database"></i>
+        </div>
+        <h3>Database Design</h3>
+        <p>I design and optimize databases for efficiency. Whether it's structuring complex relationships or writing optimized queries, I make sure data flows smoothly.</p>
+        <div class="tech-list-inline">
+          <span>MySQL</span>
+          <span>PostgreSQL</span>
+          <span>Data Modeling</span>
+          <span>Query Optimization</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Education & Experience Timeline -->
+<section class="education-experience-section">
+  <div class="container">
+    <h2>Background</h2>
+    <div class="timeline">
+      <!-- Education -->
+      <div class="timeline-item">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content">
+          <div class="timeline-badge">Education</div>
+          <h3>BSc (Hons) Computing</h3>
+          <p class="timeline-institution">Islington College, London Metropolitan University</p>
+          <p class="timeline-date">2023 – Present</p>
+          <p class="timeline-description">Focused on software development, data structures, and web technologies. Built multiple full-stack applications as part of coursework.</p>
+        </div>
+      </div>
+
+      <!-- Experience -->
+      <div class="timeline-item">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content">
+          <div class="timeline-badge">Experience</div>
+          <h3>Python Developer Intern</h3>
+          <p class="timeline-institution">CloudsNepalWeb Company Pvt. Ltd.</p>
+          <p class="timeline-date">Aug 2024 – Present</p>
+          <ul class="timeline-list">
+            <li>Developed full-stack features using Django and Bootstrap</li>
+            <li>Worked on database optimization and security improvements</li>
+            <li>Collaborated with teams on real-world projects</li>
           </ul>
         </div>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- Skills & Tools -->
-  <section class="mb-5">
-    <h2 class="fw-semibold border-bottom pb-2 mb-3">Skills & Tools</h2>
-    <div class="row g-3">
-      <div class="col-md-6">
-        <div class="p-3 bg-light rounded shadow-sm h-100">
-          <h5 class="fw-semibold">Development</h5>
-          <ul class="list-unstyled mt-2">
-            <li>🐍 Python, Django, REST Framework</li>
-            <li>💻 HTML5, CSS3, Bootstrap, JavaScript</li>
-            <li>🧠 Data Analysis (Pandas, NumPy, Matplotlib)</li>
-          </ul>
-        </div>
+<!-- Certifications -->
+<section class="certifications-section">
+  <div class="container">
+    <h2>Certifications & Learning</h2>
+    <div class="cert-grid">
+      <div class="cert-card">
+        <i class="fas fa-certificate"></i>
+        <h4>Responsive Web Design</h4>
+        <p>freeCodeCamp</p>
       </div>
-      <div class="col-md-6">
-        <div class="p-3 bg-light rounded shadow-sm h-100">
-          <h5 class="fw-semibold">Tools & Databases</h5>
-          <ul class="list-unstyled mt-2">
-            <li>🗄️ MySQL, PostgreSQL</li>
-            <li>⚙️ Git, GitHub, CI/CD (GitHub Actions)</li>
-          </ul>
-        </div>
+      <div class="cert-card">
+        <i class="fas fa-certificate"></i>
+        <h4>Introduction to Cyber Security</h4>
+        <p>Cisco Networking Academy</p>
+      </div>
+      <div class="cert-card">
+        <i class="fas fa-certificate"></i>
+        <h4>Python for Everybody</h4>
+        <p>Coursera</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Projects -->
-  <section class="mb-5">
-    <h2 class="fw-semibold border-bottom pb-2 mb-3">Highlighted Projects</h2>
-    <div class="row g-3">
-      <div class="col-md-4">
-        <div class="card h-100 shadow-sm border-0">
-          <div class="card-body">
-            <h5 class="card-title">SneakSphere</h5>
-            <p class="card-text text-muted">E-commerce web app with wishlist, authentication, and order tracking.</p>
-          </div>
-        </div>
+<!-- Beyond Code Section -->
+<section class="beyond-code-section">
+  <div class="container">
+    <h2>Beyond Code</h2>
+    <div class="beyond-grid">
+      <div class="beyond-card">
+        <h3>I Value</h3>
+        <ul class="beyond-list">
+          <li>Clean, readable code over clever code</li>
+          <li>Understanding the problem before solving it</li>
+          <li>User experience and accessibility</li>
+          <li>Continuous learning and improvement</li>
+        </ul>
       </div>
-      <div class="col-md-4">
-        <div class="card h-100 shadow-sm border-0">
-          <div class="card-body">
-            <h5 class="card-title">Land Rental & Return</h5>
-            <p class="card-text text-muted">File-based system to track land availability and bookings in real time.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card h-100 shadow-sm border-0">
-          <div class="card-body">
-            <h5 class="card-title">Recipe App</h5>
-            <p class="card-text text-muted">Dynamic Django app to browse, upload, and manage recipes with image support.</p>
-          </div>
-        </div>
+      <div class="beyond-card">
+        <h3>I'm Interested In</h3>
+        <ul class="beyond-list">
+          <li>Web security and performance optimization</li>
+          <li>System design and architecture</li>
+          <li>Building products that solve real problems</li>
+          <li>Mentoring and helping others learn</li>
+        </ul>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Certifications -->
-  <section class="mb-5">
-    <h2 class="fw-semibold border-bottom pb-2 mb-3">Certifications</h2>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">Responsive Web Design — freeCodeCamp</li>
-      <li class="list-group-item">Introduction to Cyber Security — Cisco Networking Academy</li>
-      <li class="list-group-item">Python for Everybody — Coursera</li>
-    </ul>
-  </section>
+<!-- CTA -->
+<section class="about-cta-section">
+  <div class="container">
+    <h2>Let's Work Together</h2>
+    <p>Whether you have a project, question, or just want to chat about web development, I'm always open to conversation.</p>
+    <a href="/contact/" class="btn btn-primary btn-lg">Get In Touch</a>
+  </div>
+</section>
 
-  <!-- Call To Action -->
-  <section class="text-center mb-5">
-    <h2 class="fw-semibold border-bottom pb-2 mb-3">Let’s Connect</h2>
-    <p class="mb-3 text-muted">
-      Open to collaboration and professional opportunities. Reach out or check my work below.
-    </p>
-    <a href="{% url 'contact' %}" class="btn btn-outline-primary me-2 mb-2">Contact Me</a>
-    <a href="https://github.com/riyabasnet" target="_blank" class="btn btn-outline-dark me-2 mb-2">GitHub</a>
-    <a href="https://www.linkedin.com/in/riyabasnet" target="_blank" class="btn btn-outline-primary mb-2">LinkedIn</a>
-  </section>
+<style>
+/* ============================================
+   ABOUT PAGE STYLES
+   ============================================ */
 
-</div>
+/* About Hero */
+.about-hero {
+  background-color: var(--dominant-bg);
+  padding: 4rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.about-hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.about-profile-image {
+  text-align: center;
+}
+
+.profile-img-large {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 20px 60px rgba(212, 160, 23, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.profile-img-large:hover {
+  transform: scale(1.02);
+}
+
+.about-hero-content h1 {
+  font-size: 2.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.about-intro {
+  font-size: 1.2rem;
+  color: var(--primary-text);
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.about-subtext {
+  color: var(--secondary-text);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.about-ctas {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Story Section */
+.story-section {
+  background-color: var(--dominant-bg);
+  padding: 5rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.story-section h2 {
+  font-size: 2rem;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.story-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.story-card {
+  background-color: var(--secondary-bg);
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.story-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent-gold);
+}
+
+.story-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--accent-gold);
+  margin-bottom: 0.5rem;
+}
+
+.story-card h3 {
+  font-size: 1.3rem;
+  color: var(--primary-text);
+  margin-bottom: 1rem;
+}
+
+.story-card p {
+  color: var(--secondary-text);
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+/* What I Do Section */
+.what-i-do-section {
+  background-color: var(--dominant-bg);
+  padding: 5rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.what-i-do-section h2 {
+  font-size: 2rem;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.what-i-do-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.what-i-do-card {
+  background-color: var(--secondary-bg);
+  padding: 2.5rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.what-i-do-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--accent-gold);
+  box-shadow: 0 15px 35px rgba(212, 160, 23, 0.1);
+}
+
+.do-icon {
+  width: 60px;
+  height: 60px;
+  background-color: rgba(212, 160, 23, 0.1);
+  border: 2px solid var(--accent-gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  font-size: 1.8rem;
+  color: var(--accent-gold);
+}
+
+.what-i-do-card h3 {
+  font-size: 1.4rem;
+  color: var(--primary-text);
+  margin-bottom: 1rem;
+}
+
+.what-i-do-card p {
+  color: var(--secondary-text);
+  line-height: 1.7;
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+}
+
+.tech-list-inline {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.tech-list-inline span {
+  background-color: rgba(212, 160, 23, 0.1);
+  color: var(--accent-gold);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: 1px solid rgba(212, 160, 23, 0.3);
+}
+
+/* Education & Experience Timeline */
+.education-experience-section {
+  background-color: var(--dominant-bg);
+  padding: 5rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.education-experience-section h2 {
+  font-size: 2rem;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.timeline {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 100%;
+  background-color: var(--border-color);
+}
+
+.timeline-item {
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.timeline-item:nth-child(even) .timeline-content {
+  margin-left: 0;
+  margin-right: auto;
+  padding-right: 50%;
+}
+
+.timeline-item:nth-child(odd) .timeline-content {
+  margin-left: auto;
+  margin-right: 0;
+  padding-left: 50%;
+}
+
+.timeline-marker {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 16px;
+  background-color: var(--accent-gold);
+  border: 3px solid var(--dominant-bg);
+  border-radius: 50%;
+  z-index: 10;
+}
+
+.timeline-content {
+  background-color: var(--secondary-bg);
+  padding: 2rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.timeline-content:hover {
+  border-color: var(--accent-gold);
+}
+
+.timeline-badge {
+  display: inline-block;
+  background-color: rgba(212, 160, 23, 0.1);
+  color: var(--accent-gold);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.75rem;
+}
+
+.timeline-content h3 {
+  font-size: 1.3rem;
+  color: var(--primary-text);
+  margin-bottom: 0.5rem;
+}
+
+.timeline-institution {
+  color: var(--accent-gold);
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.timeline-date {
+  color: var(--secondary-text);
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+}
+
+.timeline-description {
+  color: var(--secondary-text);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.timeline-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0 0;
+}
+
+.timeline-list li {
+  color: var(--secondary-text);
+  line-height: 1.6;
+  padding-left: 1.5rem;
+  position: relative;
+  margin-bottom: 0.5rem;
+}
+
+.timeline-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--accent-gold);
+  font-weight: 700;
+}
+
+/* Certifications Section */
+.certifications-section {
+  background-color: var(--dominant-bg);
+  padding: 5rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.certifications-section h2 {
+  font-size: 2rem;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+}
+
+.cert-card {
+  background-color: var(--secondary-bg);
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.cert-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent-gold);
+}
+
+.cert-card i {
+  font-size: 2.5rem;
+  color: var(--accent-gold);
+  margin-bottom: 1rem;
+}
+
+.cert-card h4 {
+  font-size: 1rem;
+  color: var(--primary-text);
+  margin-bottom: 0.5rem;
+}
+
+.cert-card p {
+  color: var(--secondary-text);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* Beyond Code Section */
+.beyond-code-section {
+  background-color: var(--dominant-bg);
+  padding: 5rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.beyond-code-section h2 {
+  font-size: 2rem;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.beyond-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.beyond-card {
+  background-color: var(--secondary-bg);
+  padding: 2.5rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.beyond-card:hover {
+  border-color: var(--accent-gold);
+}
+
+.beyond-card h3 {
+  font-size: 1.3rem;
+  color: var(--accent-gold);
+  margin-bottom: 1.5rem;
+}
+
+.beyond-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.beyond-list li {
+  color: var(--primary-text);
+  line-height: 1.8;
+  padding-left: 1.5rem;
+  position: relative;
+  margin-bottom: 0.75rem;
+}
+
+.beyond-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--accent-gold);
+  font-weight: 700;
+}
+
+/* CTA Section */
+.about-cta-section {
+  background-color: var(--dominant-bg);
+  padding: 5rem 0;
+  text-align: center;
+}
+
+.about-cta-section h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.about-cta-section p {
+  font-size: 1.1rem;
+  color: var(--secondary-text);
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .about-hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline::before {
+    left: 0;
+  }
+
+  .timeline-item:nth-child(even) .timeline-content,
+  .timeline-item:nth-child(odd) .timeline-content {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 60px !important;
+    padding-right: 0 !important;
+  }
+
+  .timeline-marker {
+    left: 0;
+    transform: translateX(-8px);
+  }
+}
+
+@media (max-width: 768px) {
+  .about-hero {
+    padding: 2rem 0;
+  }
+
+  .about-hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .about-intro {
+    font-size: 1rem;
+  }
+
+  .about-ctas {
+    flex-direction: column;
+  }
+
+  .story-section h2,
+  .what-i-do-section h2,
+  .education-experience-section h2,
+  .certifications-section h2,
+  .beyond-code-section h2,
+  .about-cta-section h2 {
+    font-size: 1.6rem;
+  }
+
+  .story-grid,
+  .what-i-do-grid,
+  .cert-grid,
+  .beyond-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
 {% endblock %}
