@@ -44,16 +44,7 @@
   </div>
 </section>
 
-<!-- Featured Image (if available) -->
-{% if project.featured_image %}
-<section class="project-featured-image">
-  <div class="container">
-    <div class="featured-image-wrapper">
-      <img src="{{ project.featured_image.url }}" alt="{{ project.title }}" class="featured-img">
-    </div>
-  </div>
-</section>
-{% endif %}
+
 
 <!-- Project Description -->
 <section class="project-description-section">
@@ -210,23 +201,7 @@
   padding: 0.75rem 1.5rem;
 }
 
-/* Featured Image */
-.project-featured-image {
-  background-color: var(--dominant-bg);
-  padding: 2rem 0 4rem;
-}
 
-.featured-image-wrapper {
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-}
-
-.featured-img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
 
 /* Description Section */
 .project-description-section {
