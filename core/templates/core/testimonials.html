@@ -1,21 +1,512 @@
 {% extends 'core/base.html' %}
 {% load static %}
-{% block title %}Testimonials{% endblock %}
+
+{% block title %}Testimonials | Wiwii{% endblock %}
 
 {% block content %}
-<h2>What People Say 💬</h2>
-<div class="row mt-4">
-    {% for testimonial in testimonials %}
-        <div class="col-md-4 mb-4">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <p class="fst-italic">"{{ testimonial.message }}"</p>
-                    <h6 class="fw-bold mt-3">- {{ testimonial.name }}</h6>
-                </div>
-            </div>
+
+<!-- Testimonials Header -->
+<section class="testimonials-header">
+  <div class="container">
+    <h1>What People Say</h1>
+    <p class="header-subtitle">Real feedback from people I've worked with and collaborated with.</p>
+  </div>
+</section>
+
+<!-- Featured Testimonial (Hero) -->
+<section class="featured-testimonial-section">
+  <div class="container">
+    <div class="featured-testimonial-card" id="featuredTestimonial">
+      {% if testimonials|length > 0 %}
+        {% with testimonials|first as featured %}
+        <div class="featured-quote-mark">"</div>
+        <p class="featured-message">{{ featured.feedback }}</p>
+        <div class="featured-author">
+          <h3 class="featured-name">{{ featured.name }}</h3>
+          <p class="featured-role">{{ featured.role }}</p>
         </div>
-    {% empty %}
-        <p>No testimonials yet.</p>
-    {% endfor %}
-</div>
+        <div class="featured-rating">
+          <span class="star">★</span>
+          <span class="star">★</span>
+          <span class="star">★</span>
+          <span class="star">★</span>
+          <span class="star">★</span>
+        </div>
+        {% endwith %}
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials Grid with Variety -->
+<section class="testimonials-grid-section">
+  <div class="container">
+    <div class="testimonials-grid">
+      {% for testimonial in testimonials %}
+      <div class="testimonial-item {% cycle 'size-1' 'size-2' 'size-1' %}" onclick="highlightTestimonial(this)">
+        <div class="testimonial-card-variant">
+          <div class="testimonial-header-variant">
+            <div class="rating-stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <div class="author-badge">
+              <span class="author-initial">{{ testimonial.name|first }}</span>
+            </div>
+          </div>
+          
+          <p class="testimonial-text">"{{ testimonial.feedback }}"</p>
+          
+          <div class="testimonial-footer-variant">
+            <div class="author-info-variant">
+              <h4 class="author-name-variant">{{ testimonial.name }}</h4>
+              <p class="author-role-variant">{{ testimonial.role }}</p>
+            </div>
+            <div class="expand-icon">
+              <i class="fas fa-arrow-right"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <div class="empty-state-testimonials">
+        <i class="fas fa-comment-dots"></i>
+        <h3>No Testimonials Yet</h3>
+        <p>Stay tuned for feedback from amazing people!</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Stats Section -->
+<section class="testimonials-stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-number">{{ testimonials|length }}</div>
+        <div class="stat-label">Happy Clients</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">5</div>
+        <div class="stat-label">Projects Delivered</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">100%</div>
+        <div class="stat-label">Satisfaction Rate</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="testimonials-cta">
+  <div class="container">
+    <h2>Ready to Work Together?</h2>
+    <p>Let's create something amazing. I'm always excited to hear about new projects and ideas.</p>
+    <a href="/contact/" class="btn btn-primary btn-lg">Get In Touch</a>
+  </div>
+</section>
+
+<style>
+/* ============================================
+   TESTIMONIALS PAGE STYLES
+   ============================================ */
+
+/* Header */
+.testimonials-header {
+  background-color: var(--dominant-bg);
+  padding: 3rem 0 2rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.testimonials-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.header-subtitle {
+  font-size: 1.1rem;
+  color: var(--secondary-text);
+  max-width: 600px;
+}
+
+/* Featured Testimonial */
+.featured-testimonial-section {
+  background-color: var(--dominant-bg);
+  padding: 4rem 0;
+}
+
+.featured-testimonial-card {
+  background: linear-gradient(135deg, var(--secondary-bg), rgba(212, 160, 23, 0.05));
+  border: 2px solid var(--accent-gold);
+  border-radius: 16px;
+  padding: 3rem;
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  transition: all 0.3s ease;
+}
+
+.featured-testimonial-card:hover {
+  box-shadow: 0 20px 50px rgba(212, 160, 23, 0.2);
+  transform: translateY(-4px);
+}
+
+.featured-quote-mark {
+  position: absolute;
+  top: 10px;
+  left: 30px;
+  font-size: 5rem;
+  color: var(--accent-gold);
+  opacity: 0.3;
+}
+
+.featured-message {
+  font-size: 1.5rem;
+  color: var(--primary-text);
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  font-style: italic;
+}
+
+.featured-author {
+  margin-bottom: 1.5rem;
+}
+
+.featured-name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--primary-text);
+  margin-bottom: 0.25rem;
+}
+
+.featured-role {
+  color: var(--accent-gold);
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.featured-rating {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.star {
+  color: var(--accent-gold);
+  font-size: 1.2rem;
+}
+
+/* Testimonials Grid */
+.testimonials-grid-section {
+  background-color: var(--dominant-bg);
+  padding: 4rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  grid-auto-rows: auto;
+}
+
+.testimonial-item {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.testimonial-item.size-1 {
+  grid-row: span 1;
+}
+
+.testimonial-item.size-2 {
+  grid-row: span 1;
+}
+
+.testimonial-card-variant {
+  background-color: var(--secondary-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 2rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.testimonial-card-variant::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-gold), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.testimonial-item:hover .testimonial-card-variant {
+  transform: translateY(-8px);
+  border-color: var(--accent-gold);
+  box-shadow: 0 15px 35px rgba(212, 160, 23, 0.15);
+}
+
+.testimonial-item:hover .testimonial-card-variant::before {
+  opacity: 1;
+}
+
+.testimonial-item.active .testimonial-card-variant {
+  border-color: var(--accent-gold);
+  background-color: rgba(212, 160, 23, 0.05);
+  box-shadow: 0 15px 35px rgba(212, 160, 23, 0.2);
+}
+
+.testimonial-header-variant {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.rating-stars {
+  display: flex;
+  gap: 0.25rem;
+  color: var(--accent-gold);
+}
+
+.rating-stars i {
+  font-size: 1rem;
+}
+
+.author-badge {
+  width: 40px;
+  height: 40px;
+  background-color: rgba(212, 160, 23, 0.1);
+  border: 2px solid var(--accent-gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: var(--accent-gold);
+  font-size: 1.1rem;
+}
+
+.testimonial-text {
+  color: var(--primary-text);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+  font-style: italic;
+  color: var(--secondary-text);
+}
+
+.testimonial-footer-variant {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem;
+  margin-top: auto;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.author-info-variant {
+  flex-grow: 1;
+}
+
+.author-name-variant {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--primary-text);
+  margin: 0 0 0.25rem 0;
+}
+
+.author-role-variant {
+  font-size: 0.8rem;
+  color: var(--secondary-text);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.expand-icon {
+  color: var(--accent-gold);
+  font-size: 1.2rem;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.3s ease;
+}
+
+.testimonial-item:hover .expand-icon {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Empty State */
+.empty-state-testimonials {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 4rem 2rem;
+  color: var(--secondary-text);
+}
+
+.empty-state-testimonials i {
+  font-size: 3.5rem;
+  color: var(--secondary-text);
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+.empty-state-testimonials h3 {
+  font-size: 1.5rem;
+  color: var(--primary-text);
+  margin-bottom: 0.5rem;
+}
+
+.empty-state-testimonials p {
+  color: var(--secondary-text);
+}
+
+/* Stats Section */
+.testimonials-stats {
+  background-color: var(--dominant-bg);
+  padding: 4rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  text-align: center;
+}
+
+.stat-card {
+  background-color: var(--secondary-bg);
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  border-color: var(--accent-gold);
+  transform: translateY(-4px);
+}
+
+.stat-number {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--accent-gold);
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  font-size: 0.95rem;
+  color: var(--secondary-text);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* CTA Section */
+.testimonials-cta {
+  background-color: var(--dominant-bg);
+  padding: 5rem 0;
+  text-align: center;
+}
+
+.testimonials-cta h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.testimonials-cta p {
+  font-size: 1.1rem;
+  color: var(--secondary-text);
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .testimonials-header h1 {
+    font-size: 2rem;
+  }
+
+  .featured-testimonial-card {
+    padding: 2rem;
+  }
+
+  .featured-message {
+    font-size: 1.2rem;
+  }
+
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .testimonial-item,
+  .testimonial-item.size-2 {
+    grid-row: span 1;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .testimonials-cta h2 {
+    font-size: 1.8rem;
+  }
+}
+</style>
+
+<script>
+function highlightTestimonial(element) {
+  // Remove active class from all items
+  document.querySelectorAll('.testimonial-item').forEach(item => {
+    item.classList.remove('active');
+  });
+  
+  // Add active class to clicked item
+  element.classList.add('active');
+  
+  // Update featured testimonial
+  const name = element.querySelector('.author-name-variant').textContent;
+  const role = element.querySelector('.author-role-variant').textContent;
+  const message = element.querySelector('.testimonial-text').textContent;
+  
+  const featured = document.getElementById('featuredTestimonial');
+  featured.innerHTML = `
+    <div class="featured-quote-mark">"</div>
+    <p class="featured-message">${message}</p>
+    <div class="featured-author">
+      <h3 class="featured-name">${name}</h3>
+      <p class="featured-role">${role}</p>
+    </div>
+    <div class="featured-rating">
+      <span class="star">★</span>
+      <span class="star">★</span>
+      <span class="star">★</span>
+      <span class="star">★</span>
+      <span class="star">★</span>
+    </div>
+  `;
+  
+  // Smooth scroll to featured
+  featured.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+</script>
+
 {% endblock %}
