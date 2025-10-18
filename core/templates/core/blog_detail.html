@@ -1,82 +1,462 @@
 {% extends 'core/base.html' %}
 {% load static %}
 
-{% block title %}{{ post.title }} - Blog | Riya Basnet{% endblock %}
+{% block title %}{{ post.title }} | Wiwii Blog{% endblock %}
 
 {% block content %}
-<section class="container py-5" style="max-width: 850px;">
-  <!-- Post Header -->
-  <div class="text-center mb-4">
-    <h1 class="fw-bold">{{ post.title }}</h1>
-    <p class="text-muted small">
-      Published on {{ post.created_at|date:"F j, Y" }}
-    </p>
-  </div>
 
-  <!-- Cover Image -->
-  {% if post.thumbnail %}
-  <div class="mb-5">
-    <img src="{{ post.thumbnail.url }}" 
-         class="img-fluid rounded-4 shadow-sm blog-cover" 
-         alt="{{ post.title }}">
-  </div>
-  {% endif %}
-
-  <!-- Content -->
-  <article class="blog-content mb-5">
-    {{ post.content|safe }}
-
-
-  </article>
-
-  <!-- Back Button -->
-  <div class="text-center">
-    <a href="{% url 'blog_list' %}" class="btn btn-outline-primary">
-      ← Back to Blog
+<!-- Blog Detail Header -->
+<section class="blog-detail-header">
+  <div class="container">
+    <a href="{% url 'blog_list' %}" class="breadcrumb-link">
+      <i class="fas fa-arrow-left"></i> Back to Blog
     </a>
+    
+    <h1 class="blog-detail-title">{{ post.title }}</h1>
+    
+    <div class="blog-detail-meta">
+      <span class="publish-date">
+        <i class="fas fa-calendar"></i>
+        {{ post.created_at|date:"F j, Y" }}
+      </span>
+      <span class="read-time">
+        <i class="fas fa-clock"></i>
+        5 min read
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- Cover Image -->
+{% if post.cover_image %}
+<section class="blog-detail-cover">
+  <div class="container">
+    <div class="cover-wrapper">
+      <img src="{{ post.cover_image.url }}" 
+           alt="{{ post.title }}" 
+           class="blog-cover-image">
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- Blog Content -->
+<section class="blog-detail-content">
+  <div class="container">
+    <article class="blog-article">
+      {{ post.content|safe }}
+    </article>
+
+    <!-- Post Footer -->
+    <div class="blog-detail-footer">
+      <div class="footer-divider"></div>
+      
+      <div class="blog-footer-content">
+        <div class="author-section">
+          <h3>About the Author</h3>
+          <p>I'm a full-stack developer sharing thoughts on web development, design, and building digital products. Happy to connect!</p>
+        </div>
+        
+        <div class="share-section">
+          <h3>Share This Post</h3>
+          <div class="share-buttons">
+            <a href="https://twitter.com/intent/tweet?text={{ post.title }}" 
+               target="_blank" 
+               rel="noopener noreferrer"
+               class="share-btn twitter"
+               title="Share on Twitter">
+              <i class="fab fa-twitter"></i>
+              <span>Twitter</span>
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ request.build_absolute_uri }}" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="share-btn linkedin"
+              title="Share on LinkedIn">
+              <i class="fab fa-linkedin"></i>
+              <span>LinkedIn</span>
+            </a>
+
+            <button class="share-btn copy" onclick="copyToClipboard()" title="Copy link">
+              <i class="fas fa-link"></i>
+              <span>Copy Link</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Related Posts / CTA -->
+<section class="blog-detail-cta">
+  <div class="container">
+    <h2>More Stories</h2>
+    <p>Check out other posts on the blog or let's chat about web development.</p>
+    <div class="cta-buttons">
+      <a href="{% url 'blog_list' %}" class="btn btn-primary">Read More Posts</a>
+      <a href="/contact/" class="btn btn-secondary">Get In Touch</a>
+    </div>
   </div>
 </section>
 
 <style>
-.blog-cover {
-  transition: transform 0.4s ease, box-shadow 0.3s ease;
+/* ============================================
+   BLOG DETAIL PAGE STYLES
+   ============================================ */
+
+/* Blog Detail Header */
+.blog-detail-header {
+  background-color: var(--dominant-bg);
+  padding: 3rem 0 2rem;
+  border-bottom: 1px solid var(--border-color);
 }
-.blog-cover:hover {
+
+.breadcrumb-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--secondary-text);
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.breadcrumb-link:hover {
+  color: var(--accent-gold);
+  transform: translateX(-4px);
+}
+
+.blog-detail-title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--primary-text);
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  max-width: 900px;
+}
+
+.blog-detail-meta {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.blog-detail-meta span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--secondary-text);
+  font-size: 0.95rem;
+}
+
+.blog-detail-meta i {
+  color: var(--accent-gold);
+}
+
+/* Cover Image */
+.blog-detail-cover {
+  background-color: var(--dominant-bg);
+  padding: 2rem 0 4rem;
+}
+
+.cover-wrapper {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(212, 160, 23, 0.1);
+}
+
+.blog-cover-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  max-height: 500px;
+  object-fit: cover;
+  transition: all 0.4s ease;
+}
+
+.blog-detail-cover:hover .blog-cover-image {
   transform: scale(1.02);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
 }
-.blog-content {
-  line-height: 1.8;
+
+/* Blog Content */
+.blog-detail-content {
+  background-color: var(--dominant-bg);
+  padding: 4rem 0;
+}
+
+.blog-article {
+  max-width: 850px;
+  margin: 0 auto;
+  color: var(--primary-text);
+}
+
+/* Article Typography */
+.blog-article h2,
+.blog-article h3 {
+  color: var(--accent-gold);
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.blog-article h2 {
+  font-size: 1.8rem;
+}
+
+.blog-article h3 {
+  font-size: 1.4rem;
+}
+
+.blog-article p {
+  color: var(--primary-text);
   font-size: 1.05rem;
-  color: #333;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
 }
-.blog-content h2,
-.blog-content h3 {
-  margin-top: 1.6rem;
+
+.blog-article a {
+  color: var(--accent-gold);
   font-weight: 600;
-  color: #0d6efd;
+  border-bottom: 1px solid rgba(212, 160, 23, 0.3);
+  transition: all 0.3s ease;
 }
-.blog-content p {
-  margin-bottom: 1.2rem;
+
+.blog-article a:hover {
+  border-bottom-color: var(--accent-gold);
+  color: #E8B923;
 }
-.blog-content img {
+
+.blog-article ul,
+.blog-article ol {
+  margin-bottom: 1.5rem;
+  padding-left: 2rem;
+}
+
+.blog-article li {
+  color: var(--primary-text);
+  line-height: 1.8;
+  margin-bottom: 0.75rem;
+}
+
+.blog-article blockquote {
+  border-left: 4px solid var(--accent-gold);
+  padding-left: 1.5rem;
+  margin-left: 0;
+  margin-bottom: 1.5rem;
+  color: var(--secondary-text);
+  font-style: italic;
+  font-size: 1.1rem;
+}
+
+/* Images in Content */
+.blog-article img {
   max-width: 100%;
-  border-radius: 10px;
-  margin: 1.5rem 0;
+  height: auto;
+  border-radius: 8px;
+  margin: 2rem 0;
+  box-shadow: 0 10px 30px rgba(212, 160, 23, 0.1);
 }
-.blog-content code {
-  background-color: #f6f8fa;
-  padding: 3px 6px;
-  border-radius: 5px;
+
+/* Code Blocks */
+.blog-article code {
+  background-color: var(--secondary-bg);
+  color: var(--accent-gold);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
   font-size: 0.9rem;
 }
-.blog-content pre {
-  background: #1e1e1e;
-  color: #f8f8f2;
-  padding: 15px;
+
+.blog-article pre {
+  background-color: var(--secondary-bg);
+  border: 1px solid var(--border-color);
+  padding: 1.5rem;
   border-radius: 8px;
   overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+
+.blog-article pre code {
+  background-color: transparent;
+  color: var(--primary-text);
+  padding: 0;
+}
+
+/* Blog Detail Footer */
+.blog-detail-footer {
+  max-width: 850px;
+  margin: 4rem auto 0;
+  padding-top: 4rem;
+}
+
+.footer-divider {
+  height: 1px;
+  background-color: var(--border-color);
+  margin-bottom: 3rem;
+}
+
+.blog-footer-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+.author-section h3,
+.share-section h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--primary-text);
+  margin-bottom: 1rem;
+}
+
+.author-section p {
+  color: var(--secondary-text);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.share-buttons {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.share-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background-color: var(--secondary-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  color: var(--primary-text);
+  text-decoration: none;
+  font-weight: 600;
   font-size: 0.9rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.share-btn:hover {
+  background-color: rgba(212, 160, 23, 0.1);
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+  transform: translateY(-2px);
+}
+
+.share-btn i {
+  font-size: 1rem;
+}
+
+/* CTA Section */
+.blog-detail-cta {
+  background-color: var(--dominant-bg);
+  padding: 5rem 0;
+  text-align: center;
+  border-top: 1px solid var(--border-color);
+}
+
+.blog-detail-cta h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.blog-detail-cta p {
+  font-size: 1.1rem;
+  color: var(--secondary-text);
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .blog-detail-title {
+    font-size: 2rem;
+  }
+
+  .blog-article {
+    padding: 0 1rem;
+  }
+
+  .blog-article h2 {
+    font-size: 1.5rem;
+  }
+
+  .blog-article h3 {
+    font-size: 1.2rem;
+  }
+
+  .blog-article p {
+    font-size: 1rem;
+  }
+
+  .blog-footer-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .share-buttons {
+    flex-direction: column;
+  }
+
+  .share-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .blog-detail-cta h2 {
+    font-size: 1.8rem;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cta-buttons .btn {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .blog-detail-title {
+    font-size: 1.6rem;
+  }
+
+  .blog-detail-meta {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .blog-article h2 {
+    font-size: 1.3rem;
+  }
+
+  .blog-article p {
+    font-size: 0.95rem;
+  }
 }
 </style>
+
+<script>
+function copyToClipboard() {
+  const url = window.location.href;
+  navigator.clipboard.writeText(url).then(() => {
+    alert('Link copied to clipboard!');
+  }).catch(() => {
+    alert('Failed to copy link');
+  });
+}
+</script>
+
 {% endblock %}
