@@ -16,22 +16,22 @@
     <div class="collapse navbar-collapse" id="navbarMenu">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <a class="nav-link" href="/">Home</a>
+          <a class="nav-link {% if request.resolver_match.name == 'home' %}active{% endif %}" href="/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/projects/">Projects</a>
+          <a class="nav-link {% if 'projects' in request.path %}active{% endif %}" href="/projects/">Projects</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/blog/">Blog</a>
+          <a class="nav-link {% if request.resolver_match.name == 'blog_list' %}active{% endif %}" href="/blog/">Blog</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/testimonials/">Testimonials</a>
+          <a class="nav-link {% if request.resolver_match.name == 'testimonials' %}active{% endif %}" href="/testimonials/">Testimonials</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/about/">About</a>
+          <a class="nav-link {% if request.resolver_match.name == 'about' %}active{% endif %}" href="/about/">About</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link nav-link-cta" href="/contact/">
+          <a class="nav-link nav-link-cta {% if request.resolver_match.name == 'contact' %}active{% endif %}" href="/contact/">
             <i class="fas fa-envelope"></i>
             <span>Contact</span>
           </a>
