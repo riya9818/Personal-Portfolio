@@ -1,39 +1,35 @@
 {% load static %}
 
-<nav class="navbar navbar-expand-lg navbar-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container">
-    <!-- Brand/Logo -->
-    <a class="navbar-brand" href="/">
-      Riya Basnet
-    </a>
+    <!-- Brand -->
+    <a class="navbar-brand fw-bold" href="{% url 'home' %}">Riya Basnet</a>
 
-    <!-- Hamburger Toggle -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+    <!-- Toggler -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <!-- Navigation Links -->
     <div class="collapse navbar-collapse" id="navbarMenu">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <a class="nav-link {% if request.resolver_match.name == 'home' %}active{% endif %}" href="/">Home</a>
+          <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" href="{% url 'home' %}">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {% if 'projects' in request.path %}active{% endif %}" href="/projects/">Projects</a>
+          <a class="nav-link {% if 'projects' in request.path %}active{% endif %}" href="{% url 'project_list' %}">Projects</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {% if request.resolver_match.name == 'blog_list' %}active{% endif %}" href="/blog/">Blog</a>
+          <a class="nav-link {% if 'blog' in request.path %}active{% endif %}" href="{% url 'blog_list' %}">Blog</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {% if request.resolver_match.name == 'testimonials' %}active{% endif %}" href="/testimonials/">Testimonials</a>
+          <a class="nav-link {% if request.resolver_match.url_name == 'testimonials' %}active{% endif %}" href="{% url 'testimonials' %}">Testimonials</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {% if request.resolver_match.name == 'about' %}active{% endif %}" href="/about/">About</a>
+          <a class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}" href="{% url 'about' %}">About</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link nav-link-cta {% if request.resolver_match.name == 'contact' %}active{% endif %}" href="/contact/">
-            <i class="fas fa-envelope"></i>
-            <span>Contact</span>
+          <a class="nav-link btn btn-primary text-white px-3 ms-2 {% if request.resolver_match.url_name == 'contact' %}active{% endif %}" href="{% url 'contact' %}">
+            <i class="bi bi-envelope"></i> Contact
           </a>
         </li>
       </ul>
