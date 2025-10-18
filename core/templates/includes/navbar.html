@@ -16,23 +16,23 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link {% if request.path.startswith:'/projects/' %}active{% endif %}" href="{% url 'project_list' %}">Projects</a>
+          <a class="nav-link {% if '/projects/' in request.path %}active{% endif %}" href="{% url 'project_list' %}">Projects</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link {% if request.path.startswith:'/blog/' %}active{% endif %}" href="{% url 'blog_list' %}">Blog</a>
+          <a class="nav-link {% if '/blog/' in request.path %}active{% endif %}" href="{% url 'blog_list' %}">Blog</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link {% if request.path.startswith:'/testimonials/' %}active{% endif %}" href="{% url 'testimonials' %}">Testimonials</a>
+          <a class="nav-link {% if '/testimonials/' in request.path %}active{% endif %}" href="{% url 'testimonials' %}">Testimonials</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link {% if request.path.startswith:'/about/' %}active{% endif %}" href="{% url 'about' %}">About</a>
+          <a class="nav-link {% if '/about/' in request.path %}active{% endif %}" href="{% url 'about' %}">About</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link nav-link-cta {% if request.path.startswith:'/contact/' %}active{% endif %}" href="{% url 'contact' %}">
+          <a class="nav-link nav-link-cta {% if '/contact/' in request.path %}active{% endif %}" href="{% url 'contact' %}">
             <i class="fas fa-envelope"></i> Contact
           </a>
         </li>
