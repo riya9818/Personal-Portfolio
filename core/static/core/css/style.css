@@ -193,6 +193,20 @@ a:hover {
 .nav-link:hover::after {
   width: 100%;
 }
+/* Active nav link state */
+.nav-link.active {
+  color: var(--accent-gold) !important;
+}
+
+.nav-link.active::after {
+  width: 100%;
+  background-color: var(--accent-gold);
+}
+
+.nav-link-cta.active {
+  background-color: #E8B923;
+  box-shadow: 0 4px 12px rgba(212, 160, 23, 0.4);
+}
 
 .nav-link-cta {
   background-color: var(--accent-gold);
